@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String
+  phone_number  Int       @unique
+  password      String?
+  role          Role      @default(USER)
+  carts         Cart[]
+  whishlists    Whishlist[]
+  orders        Order[]
+  payments      Payment[]
+  reviews       Review[]
+}
+
+model Product{
+  id            String      @id @default(uuid())
+  image_url     String
+  name          String
+  price         Int
+  description   String
+  catagory      Catagory    @relation(fields: [catagory_id], references: [id])   
+  catagory_id   String    
+  carts         Cart[]
+  whishlists    Whishlist[]
+  order_items   Order_item[]
+  reviews       Review[]
+}
+
+model Catagory{
+  id            String    @id @default(uuid())
+  name          String
+  products      Product[]
+}
+
+model Cart{
+  id            String    @id @default(uuid())
+  user          User      @relation(fields: [user_id], references: [id])
+  user_id       String
+  products      Product[]
+}
+model Whishlist{
+  id            String    @id @default(uuid())
+  user          User      @relation(fields: [user_id], references: [id])
+  user_id       String
+  products      Product[]
+}
+model Order{
+  id            String    @id @default(uuid())
+  date          DateTime  @default(now())
+  address       String
+  user          User      @relation(fields: [user_id], references: [id])
+  user_id       String
+  order_items   Order_item[]
+  total_price   Float
+  status        String
+  payment_id    String
+  payment       Payment   @relation(fields: [payment_id], references: [id])
+}
+model Order_item{
+  id            String    @id @default(uuid())
+  price         Float
+  quantity      Int
+  product       Product   @relation(fields: [product_id], references: [id])
+  product_id    String
+  order         Order     @relation(fields: [order_id], references: [id])
+  order_id      String
+}
+
+model Payment{
+  id            String    @id @default(uuid())
+  date          DateTime  @default(now())
+  user          User      @relation(fields: [user_id], references: [id])
+  user_id       String
+  orders        Order[]
+  amount        Float
+}
+model Review{
+  id            String    @id @default(uuid())
+  date          DateTime  @default(now())
+  rating        Int
+  comment       String
+  user          User      @relation(fields: [user_id], references: [id]) 
+  user_id       String
+  product       Product   @relation(fields: [product_id], references: [id])
+  product_id    String
+}
