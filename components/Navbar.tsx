@@ -36,7 +36,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-4/5 fixed top-1 left-[10vw]">
+    <div className="flex justify-between items-center w-full pl-[10vw] pr-[10vw] fixed top-0 left-0 bg-red-100 h-14">
       <h3 className="font-bold text-xl md:text-3xl lg:text-4xl">YASHSTOCK</h3>
       {showHamburger ? (
         <button onClick={handleHamburgerClick}>
@@ -53,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
           {user ? (
             user.role === "ADMIN" ? (
               <li className="hover:scale-105 transition duration-200 hover:bg-red-200 p-2">
-                <Link href="/admin">Admin</Link>
+                <Link href="/dashboard">Admin</Link>
               </li>
             ) : (
               <>

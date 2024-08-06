@@ -8,6 +8,7 @@ const initialState = {
   message: null,
 };
 const page = (props: Props) => {
+  const { pending } = useFormStatus();
   const [state, formAction] = useFormState(createProduct as any, initialState);
   return (
     <section>
@@ -43,7 +44,7 @@ const page = (props: Props) => {
           <input className="my-input" type="text" name="catagory" />
         </div>
         <button type="submit" className="primary-btn">
-          submit
+          {pending ? "Creating..." : "Create"}
         </button>
       </form>
     </section>

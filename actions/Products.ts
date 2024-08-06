@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { redirect } from "next/navigation";
 
 const createProduct = async (prevState: FormData, formData: FormData) => {
   const name = formData.get("name") as string;
@@ -25,6 +26,7 @@ const createProduct = async (prevState: FormData, formData: FormData) => {
         },
       },
     });
+    redirect("/dashboard/products");
   } catch (error) {
     return { message: "failed" };
   }
