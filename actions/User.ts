@@ -70,7 +70,10 @@ const Login = async (prevState: FormData, formData: FormData) => {
   if (!user) {
     return { message: "User not found!" };
   }
-  const passwordsMatch = await bcrypt.compare(password, user.password);
+  const passwordsMatch = await bcrypt.compare(
+    password,
+    user.password as string
+  );
   if (!passwordsMatch) {
     return { message: "Password incorrect!" };
   }

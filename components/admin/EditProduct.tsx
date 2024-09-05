@@ -18,10 +18,15 @@ const EditProduct = ({ product }: { product: Product }) => {
     name: product.name,
     price: product.price,
     description: product.description,
-    image_url: product.image_url || [],
+    image_url: product.image_url as any,
   });
   const [state, formAction] = useFormState(updateProduct as any, product);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+  const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
 
     setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -68,7 +73,7 @@ const EditProduct = ({ product }: { product: Product }) => {
         id="description"
         className="my-input"
         defaultValue={formData.description}
-        onChange={handleChange}
+        onChange={handleChangeTextArea}
       />
 
       <button type="submit" className="secondary-btn">

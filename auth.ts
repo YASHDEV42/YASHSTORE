@@ -59,10 +59,14 @@ export const authConfig: any = {
   },
 
   callbacks: {
-    async session({ session, token }: { session: Session; token: any }) {
+    async session({ session, token }: { session: any; token: any }) {
       if (token?.sub && token?.role) {
-        session.user.id = token.sub;
-        session.user.role = token.role;
+        if (session.user) {
+          session.user.id = token.sub;
+          session.user.role = token.role;
+        } else {
+          console.error("session.user is undefined");
+        }
       }
 
       return session;
