@@ -1,5 +1,5 @@
 "use client";
-import { Register } from "@/actions/User";
+import { googleLogin, Register } from "@/actions/User";
 import React from "react";
 import { useFormState, useFormStatus } from "react-dom";
 type Props = {};
@@ -10,8 +10,8 @@ const SignUp = (props: Props) => {
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(Register as any, initialState);
   return (
-    <section className="center-col gap-2">
-      <div className="h-1/2 w-full flex items-center justify-center mb-8">
+    <section className="center-col gap-2 mb-8">
+      <div className="h-1/2 w-full flex items-center justify-center mb-8 mt-20">
         <h1>Register Page</h1>
       </div>
       <form className="center-col w-full" action={formAction}>
@@ -37,16 +37,7 @@ const SignUp = (props: Props) => {
             id="email"
           />
         </div>
-        {/* <div className="w-full flex items-center justify-center flex-col">
-          <label htmlFor="phone">Phone Number :</label>
-          <input
-            className="my-input"
-            placeholder=""
-            type="phone"
-            name="phone"
-            id="phone"
-          />
-        </div> */}
+
         <div className="w-full flex items-center justify-center flex-col">
           <label htmlFor="password">Password :</label>
           <input
@@ -64,6 +55,16 @@ const SignUp = (props: Props) => {
             name="confirmPassword"
             id="confirmPassword"
           />
+          <label htmlFor="phone_number">Phone Number:</label>
+          <input
+            className="my-input"
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            placeholder="90 888 888 88 88"
+            maxLength={12}
+            required
+          />
         </div>
         {state.message && (
           <p className="text-red-700 text-lg md:text-xl lg:text-2xl font-bold">
@@ -75,7 +76,7 @@ const SignUp = (props: Props) => {
         </button>
       </form>
       <span>or</span>
-      <form>
+      <form action={googleLogin}>
         <button className="google-btn w-12">Sign Up with Google</button>
       </form>
     </section>

@@ -6,13 +6,22 @@ import { BadgePlus } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { Shapes } from "lucide-react";
 import { BadgeDollarSign } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
+import { Users } from "lucide-react";
 
 type Props = {};
 
 const DashboardSideMenu = (props: Props) => {
   return (
-    <div className=" min-h-screen w-1/4 bg-red-200 fixed left-0 top-0  pl-[10vw] -z-10">
-      <ul className="w-full bg-red-200 h-screen center-col gap-5">
+    <div className=" min-h-screen w-1/4 bg-red-200 fixed left-0 top-14 pl-[10vw]">
+      <ul className="w-full bg-gradient-to-r from-red-200 to-red-50 h-screen center-col gap-5">
+        <Link href={"/dashboard"} className="side-link">
+          <span>
+            <LayoutDashboard className="inline mr-3" />
+            <li className="inline">Dashboard</li>
+          </span>
+          <ChevronRight className="inline" />
+        </Link>
         <Link href={"/dashboard/products"} className="side-link">
           <span>
             <ShoppingBasket className="inline mr-3" />
@@ -34,10 +43,17 @@ const DashboardSideMenu = (props: Props) => {
           </span>
           <ChevronRight className="inline" />
         </Link>
-        <Link className="side-link" href="/dashboard/sales">
+        <Link className="side-link" href="/dashboard/users">
+          <span>
+            <Users className="inline mr-3" />
+            <li className="inline">Users</li>
+          </span>
+          <ChevronRight className="inline" />
+        </Link>
+        <Link className="side-link" href="/dashboard/orders">
           <span>
             <BadgeDollarSign className="inline mr-3" />
-            <li className="inline">Sales</li>
+            <li className="inline">Orders</li>
           </span>
           <ChevronRight className="inline" />
         </Link>

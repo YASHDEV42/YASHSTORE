@@ -10,8 +10,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "YASHSTOCK",
-  description: "YASHSTOCK is a e-commerce website for buying products.",
+  title: "YASHSTORE",
+  description: "YASHSTORE is a e-commerce website for buying products.",
 };
 
 export default function RootLayout({

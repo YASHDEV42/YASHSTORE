@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import connectDB from "./lib/db";
 import bcyrpt from "bcryptjs";
 import Google from "next-auth/providers/google";
 import { Session } from "next-auth";
@@ -10,8 +9,8 @@ import prisma from "./lib/db";
 
 const providers: Provider[] = [
   Google({
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
   }),
   Credentials({
     name: "Credentials",

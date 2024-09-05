@@ -1,14 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-*,
+z *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 body {
-  @apply bg-red-100;
+  @apply bg-red-50;
 }
 
 section {
@@ -32,7 +31,7 @@ p {
 }
 .primary-btn {
   @apply bg-red-500;
-  @apply text-red-100;
+  @apply text-red-50;
   @apply text-lg;
   @apply font-bold;
   @apply rounded-md;
@@ -45,16 +44,17 @@ p {
   @apply shadow-lg;
   @apply border-2;
   @apply border-red-500;
-  @apply hover:bg-red-200;
+  @apply hover:bg-red-100;
   @apply hover:text-red-600;
   @apply hover:border-red-600;
   @apply hover:scale-110;
   @apply hover:shadow-xl;
+  @apply hover:-translate-y-1;
   @apply transition;
   @apply duration-300;
 }
 .secondary-btn {
-  @apply bg-red-100;
+  @apply bg-red-50;
   @apply text-red-500;
   @apply text-lg;
   @apply font-bold;
@@ -68,11 +68,13 @@ p {
   @apply shadow-lg;
   @apply border-2;
   @apply border-red-500;
-  @apply hover:bg-red-200;
+  @apply hover:bg-red-100;
   @apply hover:text-red-600;
   @apply hover:border-red-600;
   @apply hover:scale-110;
   @apply hover:shadow-xl;
+  @apply hover:-translate-y-1;
+
   @apply transition;
   @apply duration-300;
 }
@@ -157,8 +159,10 @@ label {
   @apply font-semibold;
   @apply text-red-700;
   @apply hover:text-red-900;
-  @apply hover:bg-red-300;
+  @apply hover:bg-red-200;
   @apply hover:scale-105;
+  @apply hover:translate-x-6;
+  @apply hover:-translate-y-1;
   @apply rounded-l-md;
   @apply pl-3;
   @apply transition;
