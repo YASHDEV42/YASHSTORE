@@ -18,8 +18,8 @@ const CreateProduct = (props: Props) => {
     setImageInputs([...imageInputs, ""]); // Add a new empty string to the array
   };
   return (
-    <section className="mt-20">
-      <h1 className="my-14">create product</h1>
+    <section className="mt-28 mb-5">
+      <h1 className="my-14 capitalize">create product</h1>
       <form action={formAction} className="center-col gap-5">
         <div className="w-full center-col">
           <label>image urls</label>

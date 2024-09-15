@@ -32,7 +32,7 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full pl-[10vw] pr-[10vw] fixed top-0 left-0 bg-red-50 h-14">
+    <div className="flex justify-between items-center w-full pl-[10vw] pr-[10vw] fixed top-0 left-0 bg-red-50 h-14 z-50">
       <h3 className="font-bold text-xl md:text-3xl lg:text-4xl">YASHSTORE</h3>
       {showHamburger ? (
         <button onClick={handleHamburgerClick}>

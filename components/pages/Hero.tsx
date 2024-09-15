@@ -67,7 +67,16 @@ const Hero: React.FC<HeroProps> = ({ user }) => {
           </div>
         ) : (
           <div className="center-col h-screen gap-2">
-            <h1>Welcome back, {user.name}!</h1>
+            <h1>
+              Welcome back,{" "}
+              <span
+                className="
+              bg-gradient-to-r from-red-950 to-red-800 text-transparent bg-clip-text
+            "
+              >
+                {user.name}
+              </span>
+            </h1>
             <p>The best place to buy any product</p>
             <div className="mt-2">
               <button className="primary-btn mr-4">
@@ -93,6 +102,11 @@ const Hero: React.FC<HeroProps> = ({ user }) => {
           </div>
         </div>
       )}
+      <span
+        className="w-full bg-black h-80 absolute left-0 -bottom-64 rounded-b-full
+        bg-gradient-to-b from-red-50 to-red-200 z-0
+      "
+      ></span>
     </section>
   );
 };

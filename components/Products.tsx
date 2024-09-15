@@ -4,6 +4,7 @@ import { Product, User } from "@/types"; // Import your Product type
 import Link from "next/link";
 import AddToCart from "./buttons/AddToCart";
 import React from "react";
+import { ChevronDown } from "lucide-react";
 
 const Products = ({ products, user }: { products: Product[]; user: User }) => {
   const [prodcts, setProducts] = React.useState<Product[]>(products);
@@ -26,41 +27,82 @@ const Products = ({ products, user }: { products: Product[]; user: User }) => {
 
   return (
     <section>
-      <div className="flex flex-row justify-between items-center w-full mt-28">
-        <div>
-          <label htmlFor="">Search :</label>
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center w-full mt-20 lg:mt-28 px-4 md:px-6 lg:px-8 space-y-4 lg:space-y-0">
+        <div className="w-full lg:w-auto">
+          <label
+            htmlFor="search"
+            className="block lg:inline text-lg font-semibold mb-2 lg:mb-0"
+          >
+            Search:
+          </label>
           <input
-            className="ml-3 text-lg font-semibold w-64 h-10
+            className="ml-0 lg:ml-3 text-lg font-semibold w-full lg:w-64 h-10
            border-2 border-red-300 rounded-md px-4
            focus:outline-none focus:ring-2 focus:ring-red-300
            focus:border-transparent"
             type="text"
             id="search"
             value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-            }}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
-        <div>
-          {uniqueCategories.map((category) => {
-            return (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={
-                  selectedCategory === category
-                    ? " bg-gradient-to-br from-red-600 to-red-700 p-2 rounded-sm ml-3 text-white hover:bg-gradient-to-bl hover:shadow-lg transition-all duration-400"
-                    : " bg-gradient-to-br from-red-400 to-red-600 p-2 rounded-sm ml-3 text-white hover:bg-gradient-to-bl hover:shadow-lg transition-all duration-400"
-                }
-              >
-                {category}
-              </button>
-            );
-          })}
+
+        {/* Mobile Category Selector */}
+        <div className="lg:hidden w-full">
+          <label
+            htmlFor="category-select"
+            className="block text-lg font-semibold mb-2"
+          >
+            Category:
+          </label>
+          <div className="relative">
+            <select
+              id="category-select"
+              value={selectedCategory || ""}
+              onChange={(e) => setSelectedCategory(e.target.value || null)}
+              className="appearance-none w-full bg-white border-2 border-red-300 text-gray-700 py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-red-500"
+            >
+              <option value="">All</option>
+              {uniqueCategories.map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <ChevronDown className="h-4 w-4" />
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Category Buttons */}
+        <div className="hidden lg:flex flex-wrap justify-start lg:justify-end items-center w-full lg:w-auto mt-4 lg:mt-0">
+          {uniqueCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`
+              ${
+                selectedCategory === category
+                  ? "bg-gradient-to-br from-red-600 to-red-700"
+                  : "bg-gradient-to-br from-red-400 to-red-600"
+              } 
+              p-2 rounded-sm mr-2 mb-2 md:ml-3 md:mb-0 text-white hover:bg-gradient-to-bl hover:shadow-lg transition-all duration-400
+            `}
+            >
+              {category}
+            </button>
+          ))}
           <button
             onClick={() => setSelectedCategory(null)}
-            className="bg-gradient-to-br from-red-400 to-red-600 p-2 rounded-sm ml-3 text-white hover:bg-gradient-to-bl hover:shadow-lg transition-all duration-400"
+            className={`
+            ${
+              selectedCategory === null
+                ? "bg-gradient-to-br from-red-600 to-red-700"
+                : "bg-gradient-to-br from-red-400 to-red-600"
+            } 
+            p-2 rounded-sm mr-2 mb-2 md:ml-3 md:mb-0 text-white hover:bg-gradient-to-bl hover:shadow-lg transition-all duration-400
+          `}
           >
             All
           </button>

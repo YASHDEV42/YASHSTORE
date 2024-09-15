@@ -17,6 +17,15 @@ enum Role {
   ADMIN
   USER
 }
+enum Status {
+  PENDING
+  PROCESSING
+  DELIVERING
+  SHIPPED
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
 
 model User {
   id            String    @id @default(uuid())
@@ -76,7 +85,7 @@ model Order{
   user          User      @relation(fields: [user_id], references: [id])
   user_id       String
   total_price   Float
-  status        String
+  status        Status    @default(PENDING)
   products      Product[] 
   payment_id    String
 }
