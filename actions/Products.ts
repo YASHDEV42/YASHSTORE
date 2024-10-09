@@ -154,14 +154,29 @@ async function addProductToCart(product_id: string, user_id: string) {
   }
   revalidatePath("/products");
 }
-const removeProductFromCart = async (id: string) => {
+const removeProductFromCart = async (userId: string, productId: string) => {
+  console.log("Removing product from cart");
+
   try {
-    await prisma.cart.delete({
+    console.log("userId", userId);
+    console.log("productId", productId);
+    const existingCartItems = await prisma.cart.findMany({
       where: {
-        id,
+        product_id: productId,
       },
     });
-    revalidatePath("/products");
+    console.log("existingCartItems", existingCartItems);
+
+    const data = await prisma.cart.deleteMany({
+      where: {
+        product_id: productId,
+        user_id: userId,
+      },
+    });
+    console.log("Product removed from cart", data);
+
+    revalidatePath("/cart");
+    console.log("Revalidated path");
   } catch (error) {
     console.error(error);
   }

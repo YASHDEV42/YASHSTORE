@@ -5,8 +5,7 @@ import prisma from "@/lib/db";
 import Image from "next/image";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
-// import { loadStripe } from "@stripe/stripe-js";
-// import { Elements } from "@stripe/react-stripe-js";
+import RemoveProductFromCart from "@/components/buttons/RemoveProductFromCart";
 
 type Props = {};
 // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
@@ -35,7 +34,7 @@ const page = async (props: Props) => {
   }
   return (
     <section className="center-col gap-5">
-      <h1 className="mb-24">Cart</h1>
+      <h1 className="mt-24 mb-10">Cart</h1>
       {products.map((product) => (
         <div
           key={product.id}
@@ -64,19 +63,10 @@ const page = async (props: Props) => {
             >
               {product.price}$
             </p>
-            <form
-              action={async () => {
-                "use server";
-                await prisma.cart.deleteMany({
-                  where: { product_id: product.id },
-                });
-                revalidatePath("/cart");
-              }}
-            >
-              <button type="submit" className="primary-btn">
-                remove item
-              </button>
-            </form>
+            <RemoveProductFromCart
+              productId={product && product.id}
+              userId={user && user.id}
+            />
           </div>
         </div>
       ))}

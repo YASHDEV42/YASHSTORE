@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
+import { Toaster } from "react-hot-toast";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import CustomCursor from "@/components/CustomCursor";
 
@@ -26,6 +26,7 @@ export default function RootLayout({
         <NavbarWrapper />
         <CustomCursor />
         {children}
+        <Toaster />
       </body>
     </html>
   );

@@ -9,6 +9,7 @@ const initialState = {
 const LoginPage = (props: Props) => {
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(Login as any, initialState);
+
   return (
     <section className="center-col gap-2">
       <div className="h-1/2 w-full flex items-center justify-center mb-8">
