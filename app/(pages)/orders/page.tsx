@@ -30,23 +30,23 @@ const page = async (props: Props) => {
           <Link
             href={`/orders/${order.id}`}
             key={order.id}
-            className="flex justify-start gap-10 items-center flex-row w-[45rem]  bg-red-100 p-3 rounded-md
+            className="flex justify-between gap-10 items-center flex-row w-[45rem]  bg-red-100 p-3 rounded-md
           hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-red-300 transition duration-300 ease-in-out"
           >
             <h2 className="text-4xl">order {index + 1}</h2>
-            <div className="flex flex-col gap-4">
-              <h2 className="text-2xl font-bold">Products :</h2>
-              {order.products.map((product: Product) => (
-                <div
-                  key={product.id}
-                  className="flex justify-between items-center w-full"
-                >
-                  <h3 className="text-xl font-semibold">{product.name}</h3>
-                  <p className="text-xl font-semibold">{product.price}$</p>
-                </div>
-              ))}
-              <h3>{order.created_at.toUTCString()}</h3>
-            </div>
+            <h3 className="text-2xl font-semibold">
+              Total Price:{" "}
+              <span
+                className="
+            bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-500
+              "
+              >
+                {order.total_price}
+              </span>
+            </h3>
+            <h3 className="text-lg italic opacity-80 font-semibold">
+              {order.created_at.toUTCString()}
+            </h3>
           </Link>
         ))
       ) : (

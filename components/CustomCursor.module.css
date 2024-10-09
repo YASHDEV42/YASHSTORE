@@ -1,0 +1,19 @@
+.cursor {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ef4444;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), width 0.3s ease,
+    height 0.3s ease;
+}
+.cursorHovered {
+  width: 30px;
+  height: 30px;
+  border-color: #ab2121;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), width 0.3s ease,
+    height 0.3s ease;
+}

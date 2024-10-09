@@ -90,10 +90,14 @@ const Hero: React.FC<HeroProps> = ({ user }) => {
         )
       ) : (
         <div className="center-col h-screen gap-2">
-          <h1>Wellcome in YASHSTOCK</h1>
+          <h1>Welcome in YASHSTOCK</h1>
           <p>The best place to buy any product</p>
           <div className="mt-2">
-            <button className="primary-btn mr-4">
+            <button
+              onMouseOver={(e) => e.currentTarget.classList.add("hover-this")}
+              onMouseOut={(e) => e.currentTarget.classList.remove("hover-this")}
+              className="primary-btn mr-4"
+            >
               <Link href="/products">Browse</Link>
             </button>
             <button className="secondary-btn">

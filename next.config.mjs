@@ -7,6 +7,8 @@ const nextConfig = {
       "images.unsplash.com",
       "img.kwcdn.com",
       "c.media-amazon.com",
+      "www.aljazeera.net",
+      "m.media-amazon.com",
     ],
   },
 };

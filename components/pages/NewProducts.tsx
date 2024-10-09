@@ -18,7 +18,7 @@ const NewProducts = ({
   return (
     <section>
       <h1 className="mt-10 p-24">New Products</h1>
-      <div className="flex justify-center items-center flex-wrap gap-8  mx-auto mt-10 mb-10">
+      <div className="flex justify-center items-center flex-wrap gap-8  mx-auto  mb-10">
         {newProducts.map((product: Product) => {
           return (
             <div
@@ -52,18 +52,23 @@ const NewProducts = ({
                   </h3>
                 </div>
               </Link>
-              {user && user.role === "ADMIN" ? (
-                <div className="flex justify-between items-center w-full">
-                  <Link
-                    href={`/dashboard/edit-product/${product.id}`}
-                    className="bg-red-200 ml-5 px-6 py-2 rounded-md border-2 border-red-300 font-bold "
-                  >
-                    Edit
-                  </Link>
-                </div>
-              ) : (
-                <AddToCart product_id={product.id} user_id={user && user.id} />
-              )}
+              {user ? (
+                user.role === "ADMIN" ? (
+                  <div className="flex justify-between items-center w-full">
+                    <Link
+                      href={`/dashboard/edit-product/${product.id}`}
+                      className="bg-red-200 ml-5 px-6 py-2 rounded-md border-2 border-red-300 font-bold "
+                    >
+                      Edit
+                    </Link>
+                  </div>
+                ) : (
+                  <AddToCart
+                    product_id={product.id}
+                    user_id={user && user.id}
+                  />
+                )
+              ) : null}
             </div>
           );
         })}

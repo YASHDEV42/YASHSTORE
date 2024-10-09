@@ -50,7 +50,6 @@ export async function POST(req: NextRequest) {
         data: {
           total_price: paymentIntent.amount / 100,
           address: "adress",
-          status: "PAID",
           payment_id: paymentIntent.id,
           user: {
             connect: { id: userId },

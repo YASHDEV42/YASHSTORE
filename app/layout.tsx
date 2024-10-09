@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
 import NavbarWrapper from "@/components/NavbarWrapper";
+import CustomCursor from "@/components/CustomCursor";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <NavbarWrapper />
+        <CustomCursor />
         {children}
       </body>
     </html>
