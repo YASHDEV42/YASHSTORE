@@ -65,7 +65,6 @@ const createProduct = async (prevState: FormData, formData: FormData) => {
   } catch (error) {
     return { message: "failed" };
   }
-  redirect("/dashboard");
 };
 
 const deleteProduct = async (id: string) => {
@@ -182,6 +181,25 @@ const removeProductFromCart = async (userId: string, productId: string) => {
     console.error(error);
   }
 };
+const setOrderStatusFunction = async (orderId: string, status: string) => {
+  console.log("Setting order status", orderId, status);
+
+  try {
+    console.log("Updating order status");
+    await prisma.order.update({
+      where: {
+        id: orderId,
+      },
+      data: {
+        status,
+      },
+    });
+    console.log("Order status updated successfully");
+    revalidatePath("/dashboard/orders/[id]");
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export {
   createProduct,
@@ -189,4 +207,5 @@ export {
   updateProduct,
   addProductToCart,
   removeProductFromCart,
+  setOrderStatusFunction,
 };

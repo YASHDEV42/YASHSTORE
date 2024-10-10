@@ -1,3 +1,4 @@
+import SetOrderStatus from "@/components/admin/SetOrderStatus";
 import prisma from "@/lib/db";
 import { Order } from "@/types";
 import Image from "next/image";
@@ -27,14 +28,14 @@ const page = async ({ params }: { params: any }) => {
       <br />
       <h2 className="text-2xl font-semibold pb-1">Order ID: {id}</h2>
       <h2 className="text-2xl font-semibold pb-1">
-        Order Status:{" "}
-        <span
+        Order Status: <SetOrderStatus order={order && order} />
+        {/* <span
           className="text-3xl font-semibold
         bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-500
         "
         >
           {order.status}
-        </span>
+        </span> */}
       </h2>
       <h2 className="text-2xl font-semibold">
         Total Amount Paid:{" "}
