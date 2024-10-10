@@ -1,9 +1,12 @@
 "use client";
 import { createProduct } from "@/actions/Products";
 import CreateBtn from "@/components/buttons/CreateBtn";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { Plus } from "lucide-react";
+import toast from "react-hot-toast";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 type Props = {};
 const initialState = {
@@ -11,12 +14,28 @@ const initialState = {
   images: [] as string[],
 };
 const CreateProduct = (props: Props) => {
+  const [hasMounted, setHasMounted] = useState(false);
   const [state, formAction] = useFormState(createProduct as any, initialState);
   const [imageInputs, setImageInputs] = useState([""]);
 
   const addImageInput = () => {
     setImageInputs([...imageInputs, ""]); // Add a new empty string to the array
   };
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  // Main useEffect for handling toast and revalidation logic
+  useEffect(() => {
+    if (hasMounted) {
+      if (state.message === "Product created successfully!") {
+        toast.success("Product created successfully!");
+        redirect("/dashboard/products");
+      } else if (state.message) {
+        toast.error("Failed to create product");
+      }
+    }
+  }, [state.message, hasMounted]);
   return (
     <section className="mt-28 mb-5">
       <h1 className="my-14 capitalize">create product</h1>

@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import DeleteBtn from "../buttons/DeleteBtn";
 import { deleteProduct } from "@/actions/Products";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { revalidatePath } from "next/cache";
 
 type Props = {};
 
@@ -93,7 +95,11 @@ const Products = ({
                 </Link>
                 <form
                   action={async () => {
+                    const toastLoading = toast.loading("deleting product...");
                     await deleteProduct(product.id);
+                    toast.dismiss(toastLoading);
+                    toast.success("product deleted");
+                    revalidatePath("/dashboard/products");
                   }}
                 >
                   <DeleteBtn />

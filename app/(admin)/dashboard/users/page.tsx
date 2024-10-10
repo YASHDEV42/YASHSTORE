@@ -6,7 +6,8 @@ import React from "react";
 type Props = {};
 
 const page = async (props: Props) => {
-  const users: any = await prisma.user.findMany();
+  const reversedUsers: any = await prisma.user.findMany();
+  const users: User[] = reversedUsers.reverse();
   return <Users users={users} />;
 };
 

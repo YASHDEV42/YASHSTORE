@@ -61,6 +61,7 @@ const createProduct = async (prevState: FormData, formData: FormData) => {
         },
       },
     });
+    return { message: "Product created successfully!" };
   } catch (error) {
     return { message: "failed" };
   }

@@ -20,7 +20,7 @@ const AddToCart = ({
         const toastLoading = toast.loading("Adding to cart...");
         await addProductToCart(product_id, user_id);
         toast.dismiss(toastLoading);
-        toast.success("Here is your toast.");
+        toast.success("added to cart");
       }}
       className="z-50"
     >
