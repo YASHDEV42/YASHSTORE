@@ -27,46 +27,67 @@ export async function POST(req: NextRequest) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  switch (event.type) {
-    case "payment_intent.succeeded":
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
+  try {
+    switch (event.type) {
+      case "payment_intent.succeeded":
+        const paymentIntent = event.data.object as Stripe.PaymentIntent;
 
-      const userId = JSON.parse(paymentIntent.metadata.user_id.toString());
-      const productsId = JSON.parse(
-        paymentIntent.metadata.products_id.toString()
-      );
-      const products = await prisma.product.findMany({
-        where: { id: { in: productsId } },
-      });
-      const cartsId = JSON.parse(paymentIntent.metadata.carts_id.toString());
+        // Ensure metadata exists
+        const userId = paymentIntent.metadata.user_id;
+        const productsId = paymentIntent.metadata.products_id;
+        const cartsId = paymentIntent.metadata.carts_id;
 
-      const user = await prisma.user.findUnique({
-        where: { id: userId },
-      });
-      await prisma.cart.deleteMany({
-        where: { id: { in: cartsId } },
-      });
-      const order = await prisma.order.create({
-        data: {
-          total_price: paymentIntent.amount / 100,
-          address: "adress",
-          payment_id: paymentIntent.id,
-          user: {
-            connect: { id: userId },
+        if (!userId || !productsId || !cartsId) {
+          console.error("Missing metadata in paymentIntent");
+          return new NextResponse("Webhook Error: Missing metadata", {
+            status: 400,
+          });
+        }
+
+        const products = await prisma.product.findMany({
+          where: { id: { in: JSON.parse(productsId) } },
+        });
+
+        const user = await prisma.user.findUnique({
+          where: { id: JSON.parse(userId) },
+        });
+
+        if (!user) {
+          console.error("User not found");
+          return new NextResponse("Webhook Error: User not found", {
+            status: 404,
+          });
+        }
+
+        await prisma.cart.deleteMany({
+          where: { id: { in: JSON.parse(cartsId) } },
+        });
+
+        const order = await prisma.order.create({
+          data: {
+            total_price: paymentIntent.amount / 100,
+            address: "address", // Update with actual address
+            payment_id: paymentIntent.id,
+            user: {
+              connect: { id: user.id },
+            },
+            products: {
+              connect: products.map((product) => ({ id: product.id })),
+            },
           },
-          products: {
-            connect: productsId.map((productId: string) => ({ id: productId })),
-          },
-        },
-        include: { products: true },
-      });
+          include: { products: true },
+        });
 
-      console.log("Created new order with products:", order);
+        console.log("Created new order with products:", order);
 
-      revalidatePath("/");
-      break;
-    default:
-      console.warn(`Unhandled event type: ${event.type}`);
+        revalidatePath("/");
+        break;
+      default:
+        console.warn(`Unhandled event type: ${event.type}`);
+    }
+  } catch (error) {
+    console.error("Error processing webhook event:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 
   return new NextResponse(JSON.stringify({ received: true }));
