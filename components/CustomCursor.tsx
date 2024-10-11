@@ -5,6 +5,10 @@ import styles from "./CustomCursor.module.css"; // Import your CSS module
 const CustomCursor: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
+  const [url, setUrl] = useState(window.location.href);
+  const updateUrl = () => {
+    setUrl(window.location.href); // Update the URL state
+  };
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
@@ -26,8 +30,12 @@ const CustomCursor: React.FC = () => {
       const cursor = document.querySelector(`.${styles.cursor}`);
       if (cursor) cursor.classList.remove(styles.cursorHovered); // Use styles.cursorHovered
     };
+    const handleMouseClick = () => {
+      const cursor = document.querySelector(`.${styles.cursor}`);
+      if (cursor) cursor.classList.remove(styles.cursorHovered);
+    };
 
-    const hoverableElements = document.querySelectorAll("a, .hover-this");
+    const hoverableElements = document.querySelectorAll("a, button, li");
 
     hoverableElements.forEach((el) => {
       el.addEventListener("mouseover", handleMouseOver);
@@ -40,7 +48,7 @@ const CustomCursor: React.FC = () => {
         el.removeEventListener("mouseout", handleMouseOut);
       });
     };
-  }, [styles.cursorHovered]);
+  }, [url]);
 
   return (
     <div

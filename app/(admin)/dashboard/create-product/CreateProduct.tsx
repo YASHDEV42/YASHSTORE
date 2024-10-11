@@ -59,8 +59,8 @@ const CreateProduct = (props: Props) => {
           <button
             type="button"
             className="flex flex-row justify-between items-center gap-2 my-2 font-semibold
-              bg-gradient-to-br from-red-400 to-red-600 text-white px-4 py-2 rounded-md
-              hover:from-red-600 hover:to-red-700 transition duration-700 ease-in
+              bg-gradient-to-br from-gold-dark to-gold  px-4 py-2 rounded-md
+              hover:from-gold hover:to-gold-dark transition duration-700 ease-in
             "
             onClick={addImageInput}
           >

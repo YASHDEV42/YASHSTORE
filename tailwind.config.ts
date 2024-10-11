@@ -3,15 +3,17 @@ const colors = require("tailwindcss/colors");
 
 const config = {
   theme: {
-    // colors: {
-    //   "1": "#CCD0cf",
-    //   "2": "#9ba8ab",
-    //   "3": "#4a5c6a",
-    //   "4": "#253745",
-    //   "5": "#11212d",
-    //   "6": "#06141b",
-    // },
     extend: {
+      colors: {
+        gold: {
+          lightest: "#FFF9F5",
+          light: "#FFF4EB",
+          DEFAULT: "#FFD6A5",
+          middle: "#FFEBCC",
+          dark: "#E6B381",
+          darker: "#C2945D",
+        },
+      },
       animation: {
         rightToLift: "rightToLift 0.6s ease forwards",
         wave: "wave 10s linear infinite",

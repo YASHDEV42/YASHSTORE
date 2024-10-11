@@ -23,9 +23,13 @@ const SetOrderStatus = ({ order }: { order: Order }) => {
   };
 
   return (
-    <form action="">
+    <form className="inline-block ml-5">
       <input type="text" hidden value={order.id} />
-      <select defaultValue={status} onChange={handleValueChange}>
+      <select
+        defaultValue={status}
+        onChange={handleValueChange}
+        className=" border-2 border-gold rounded-md px-4 focus:outline-gold-dark focus:ring-2 focus:ring-gold focus:border-transparent"
+      >
         <option value="PENDING">Pending</option>
         <option value="CANCELLED">Cancelled</option>
         <option value="PROCESSING">Processing</option>

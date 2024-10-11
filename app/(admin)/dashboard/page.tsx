@@ -12,28 +12,26 @@ const page = async (props: Props) => {
 
   return (
     <section className="center-col gap-4 mb-24">
-      <h1 className="border-b-4 border-red-500 mt-32">Dashboard</h1>
+      <h1 className="border-b-4 border-gold mt-32">Dashboard</h1>
       <div className="grid grid-cols-4 gap-4 text-center">
         <div className="card">
-          <h2 className="text-2xl font-semibold stroke-red-500 stroke-2">
-            Users
-          </h2>
+          <h2 className="text-2xl font-semibold stroke-gold stroke-2">Users</h2>
           <p>{users.length}</p>
         </div>
         <div className="card">
-          <h2 className="text-2xl font-semibold stroke-red-500 stroke-2">
+          <h2 className="text-2xl font-semibold stroke-gold stroke-2">
             Products
           </h2>
           <p>{products.length}</p>
         </div>
         <div className="card">
-          <h2 className="text-2xl font-semibold stroke-red-500 stroke-2">
+          <h2 className="text-2xl font-semibold stroke-gold stroke-2">
             Orders
           </h2>
           <p>{orders.length}</p>
         </div>
         <div className="card">
-          <h2 className="text-2xl font-semibold stroke-red-500 stroke-2">
+          <h2 className="text-2xl font-semibold stroke-gold stroke-2">
             Categories
           </h2>
           <p>{categories.length}</p>
@@ -41,7 +39,7 @@ const page = async (props: Props) => {
       </div>
       <div className="flex flex-col items-start justify-start gap-5 w-full mt-10">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold border-b-2 border-red-200 w-full pb-2">
-          New Orders :
+          Pending Orders :
         </h2>
         <div>
           {orders && orders.length > 0 ? (
@@ -60,10 +58,10 @@ const page = async (props: Props) => {
                 })
                 .map(
                   (order, index) =>
-                    index < 3 && (
+                    order.status == "PENDING" && (
                       <div
                         key={order.id}
-                        className="flex justify-between items-center flex-row gap-10 w-full pr-6"
+                        className="flex justify-start items-center flex-row gap-10 w-full pr-6 pt-1"
                       >
                         <h2 className="text-xl w-72">
                           user name :{" "}
@@ -73,7 +71,6 @@ const page = async (props: Props) => {
                           }
                         </h2>
                         <h2>
-                          status:{" "}
                           <span
                             className="font-bold text-md
                         bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-500
@@ -89,7 +86,7 @@ const page = async (props: Props) => {
                         >
                           {order.total_price}$
                         </span>
-                        <h2 className="italic">
+                        <h2 className="italic w-64">
                           {order.created_at.toUTCString()}
                         </h2>{" "}
                       </div>

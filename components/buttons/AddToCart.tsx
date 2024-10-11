@@ -26,9 +26,9 @@ const AddToCart = ({
     >
       <button
         type="submit"
-        className="bg-red-500 text-red-100 text-lg font-semibold rounded-md w-36 h-12
-              shadow-lg border-2 border-red-500
-              hover:shadow-none hover:bg-red-200 hover:scale-95 hover:text-red-500 transition duration-300 ease-in-out"
+        className="bg-gold text-lg font-semibold rounded-md w-36 h-12
+              shadow-lg border-2 border-gold
+              hover:shadow-none hover:bg-gold-light hover:scale-95  transition duration-300 ease-in-out"
       >
         Add to Cart
       </button>

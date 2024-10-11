@@ -23,19 +23,12 @@ const page = async ({ params }: { params: any }) => {
     return <h1>Order Not Found</h1>;
   }
   return (
-    <section className="mt-64 w-full px-16 ">
+    <section className="mt-32 mb-5 w-full px-16 ">
       <h1>Order Details</h1>
       <br />
       <h2 className="text-2xl font-semibold pb-1">Order ID: {id}</h2>
       <h2 className="text-2xl font-semibold pb-1">
         Order Status: <SetOrderStatus order={order && order} />
-        {/* <span
-          className="text-3xl font-semibold
-        bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-500
-        "
-        >
-          {order.status}
-        </span> */}
       </h2>
       <h2 className="text-2xl font-semibold">
         Total Amount Paid:{" "}
@@ -53,7 +46,7 @@ const page = async ({ params }: { params: any }) => {
       <div>
         <h2
           className="text-4xl pb-1 font-bold
-        bg-clip-text text-transparent bg-gradient-to-r from-red-950 to-red-500
+        bg-clip-text text-transparent bg-gradient-to-r from-gold-darker to-gold-dark
         "
         >
           Products:

@@ -1,7 +1,7 @@
 .cursor {
   width: 40px;
   height: 40px;
-  border: 2px solid #ef4444;
+  border: 2px solid #ffd6a5;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -11,9 +11,25 @@
     height 0.3s ease;
 }
 .cursorHovered {
-  width: 30px;
-  height: 30px;
-  border-color: #ab2121;
+  width: 35px;
+  height: 35px;
+  border: none;
   transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), width 0.3s ease,
     height 0.3s ease;
+}
+.cursorHovered::before {
+  content: "";
+  background-image: url("/arrow.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  scale: 1.1;
+  z-index: 9999;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: scale 0.5s ease-in-out;
 }

@@ -32,7 +32,9 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full pl-[10vw] pr-[10vw] fixed top-0 left-0 bg-red-50 h-14 z-50">
+    <div
+      className={`flex justify-between items-center w-full pl-[10vw] pr-[10vw] fixed top-0 left-0  h-16 z-50 bg-white`}
+    >
       <h3 className="font-bold text-xl md:text-3xl lg:text-4xl">YASHSTORE</h3>
       {showHamburger ? (
         <button onClick={handleHamburgerClick}>
@@ -42,13 +44,13 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
         <ul className="flex justify-end items-center flex-row gap-4 w-full text-2xl md:text-xl font-semibold">
           <li
             className="p-2 transition duration-200 
-          hover:bg-red-100 hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
+          hover:bg-gold-light hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
           >
             <Link href="/">Home</Link>
           </li>
           <li
             className="p-2 transition duration-200 
-          hover:bg-red-100 hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
+          hover:bg-gold-light hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
           >
             <Link href="/products">Products</Link>
           </li>
@@ -57,7 +59,7 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
               <>
                 <li
                   className="p-2 transition duration-200 
-          hover:bg-red-100 hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
+          hover:bg-gold-light hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
                 >
                   <Link href="/dashboard">Admin</Link>
                 </li>
@@ -67,18 +69,18 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
               <>
                 <li
                   className="p-2 transition duration-200 
-          hover:bg-red-100 hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
+          hover:bg-gold-light hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
                 >
                   <Link href="/cart" className="center-row">
                     <ShoppingCart />
-                    <span className="center-col w-6 h-6 rounded-full relative -top-3 bg-red-500 text-center text-base">
+                    <span className="center-col w-6 h-6 rounded-full relative -top-3 bg-gold text-center text-base">
                       {cart.length}
                     </span>
                   </Link>
                 </li>
                 <li
                   className="p-2 transition duration-200 
-          hover:bg-red-100 hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
+          hover:bg-gold-light hover:scale-110 hover:translate-y-1 hover:shadow-md hover:underline"
                 >
                   <Link href={`/orders`}>My Orders</Link>
                 </li>
@@ -87,10 +89,10 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
             )
           ) : (
             <>
-              <li className="hover:scale-105 transition duration-200 hover:bg-red-200 p-2">
+              <li className="hover:scale-105 transition duration-200 hover:bg-gold-light p-2">
                 <Link href="/register">Register</Link>
               </li>
-              <li className="hover:scale-105 transition duration-200 hover:bg-red-200 p-2">
+              <li className="hover:scale-105 transition duration-200 hover:bg-gold-light p-2">
                 <Link href="/login">Login</Link>
               </li>
             </>
@@ -98,7 +100,7 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
         </ul>
       )}
       {isOpen && (
-        <div className="fixed top-10 left-0 w-screen h-screen bg-red-100 animate-rightToLift">
+        <div className="fixed top-10 left-0 w-screen h-screen hover:bg-gold-light animate-rightToLift">
           <ul className="h-full center-col gap-10 font-bold text-xl">
             <li>
               <Link onClick={() => setIsOpen(!isOpen)} href="/">
@@ -113,7 +115,7 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
             <li>
               <Link onClick={() => setIsOpen(!isOpen)} href="/products">
                 <ShoppingCart />
-                <span className="center-col w-6 h-6 rounded-full relative -top-3 bg-red-500 text-center text-base">
+                <span className="center-col w-6 h-6 rounded-full relative -top-3 bg-gold text-center text-base">
                   {cart.length}
                 </span>
               </Link>

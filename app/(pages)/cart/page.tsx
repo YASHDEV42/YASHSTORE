@@ -38,8 +38,8 @@ const page = async (props: Props) => {
       {products.map((product) => (
         <div
           key={product.id}
-          className="flex justify-between items-center flex-row w-[45rem] h-24 bg-red-100 p-3 rounded-md
-          hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-red-300 transition duration-300 ease-in-out"
+          className="flex justify-between items-center flex-row w-[45rem] h-24 bg-gold-light p-3 rounded-md
+          hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-gold transition duration-300 ease-in-out"
         >
           <div className="center-row gap-3">
             <Image
@@ -50,7 +50,7 @@ const page = async (props: Props) => {
               style={{
                 objectFit: "contain",
               }}
-              className="border-2 border-red-300 rounded-md h-20 w-20"
+              className="border-2 border-gold rounded-md h-20 w-20"
             />
             <h2 className="text-3xl font-semibold">{product.name}</h2>
           </div>
@@ -82,9 +82,9 @@ const page = async (props: Props) => {
         </h2>
         <Link href="/checkout">
           <button
-            className="bg-red-200 text-red-500 text-lg font-semibold rounded-md w-36 h-12
-               shadow-lg border-2 border-red-500
-               hover:shadow-none hover:bg-red-500 hover:scale-95 hover:text-white transition duration-300 ease-in-out"
+            className="bg-white text-lg font-semibold rounded-md w-36 h-12
+               shadow-lg border-2 border-gold
+               hover:shadow-none hover:bg-gold hover:scale-95  transition duration-300 ease-in-out"
           >
             Checkout
           </button>

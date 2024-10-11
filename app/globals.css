@@ -1,13 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-z *,
+
+#FFD6A5 #FFE9CC #FFD8A8 #FFC688 z *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 body {
-  @apply bg-red-50;
+  background-color: #fefefe;
 }
 
 section {
@@ -29,9 +30,13 @@ p {
   @apply lg:text-3xl;
   @apply text-center;
 }
+.product-list.blurred .product-item:not(.hovered) {
+  filter: blur(3px);
+}
+
 .primary-btn {
-  @apply bg-red-500;
-  @apply text-red-50;
+  @apply bg-[#FFD6A5];
+  @apply text-black;
   @apply text-lg;
   @apply font-bold;
   @apply rounded-md;
@@ -43,10 +48,8 @@ p {
   @apply lg:h-12;
   @apply shadow-lg;
   @apply border-2;
-  @apply border-red-500;
-  @apply hover:bg-red-100;
-  @apply hover:text-red-600;
-  @apply hover:border-red-600;
+  @apply border-[#FFD6A5];
+  @apply hover:bg-[#FFE9CC];
   @apply hover:scale-110;
   @apply hover:shadow-xl;
   @apply hover:-translate-y-1;
@@ -54,8 +57,8 @@ p {
   @apply duration-300;
 }
 .secondary-btn {
-  @apply bg-red-50;
-  @apply text-red-500;
+  background-color: #fff;
+  @apply text-black;
   @apply text-lg;
   @apply font-bold;
   @apply rounded-md;
@@ -67,10 +70,8 @@ p {
   @apply lg:h-12;
   @apply shadow-lg;
   @apply border-2;
-  @apply border-red-500;
-  @apply hover:bg-red-100;
-  @apply hover:text-red-600;
-  @apply hover:border-red-600;
+  @apply border-black;
+  @apply hover:border-[#FFD6A5];
   @apply hover:scale-110;
   @apply hover:shadow-xl;
   @apply hover:-translate-y-1;
@@ -79,8 +80,7 @@ p {
   @apply duration-300;
 }
 .google-btn {
-  @apply bg-red-100;
-  @apply text-red-500;
+  @apply bg-white;
   @apply text-lg;
   @apply font-bold;
   @apply rounded-md;
@@ -92,10 +92,8 @@ p {
   @apply lg:h-12;
   @apply shadow-lg;
   @apply border-2;
-  @apply border-red-500;
-  @apply hover:bg-red-200;
-  @apply hover:text-red-600;
-  @apply hover:border-red-600;
+  @apply border-gold;
+  @apply hover:bg-gold;
   @apply hover:scale-110;
   @apply hover:shadow-xl;
   @apply transition;
@@ -123,21 +121,21 @@ p {
   @apply p-1;
   @apply shadow-sm;
   @apply border-2;
-  @apply border-red-200;
+  @apply border-gold;
   @apply focus:outline-none;
   @apply focus:ring-2;
-  @apply focus:ring-red-500;
-  @apply focus:border-red-300;
+  @apply focus:ring-gold-dark;
+  @apply focus:border-gold;
   @apply focus:shadow-lg;
   @apply hover:shadow-md;
-  @apply hover:border-red-300;
+  @apply hover:border-gold;
   @apply transition;
   @apply duration-300;
   @apply mb-2;
 }
 .my-input:not(:placeholder-shown) {
   @apply ring-2;
-  @apply ring-red-500;
+  @apply ring-gold-dark;
 }
 label {
   @apply w-3/4;
@@ -145,7 +143,7 @@ label {
   @apply lg:w-5/12;
   @apply text-xl;
   @apply font-bold;
-  @apply text-red-950;
+
   @apply text-left;
 }
 .side-link {
@@ -157,9 +155,8 @@ label {
   @apply items-center;
   @apply text-lg;
   @apply font-semibold;
-  @apply text-red-700;
-  @apply hover:text-red-900;
-  @apply hover:bg-red-200;
+  @apply text-[#8C5C31];
+  @apply hover:bg-[#FFEBCC];
   @apply hover:scale-105;
   @apply hover:translate-x-6;
   @apply hover:-translate-y-1;

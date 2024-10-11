@@ -11,7 +11,7 @@ const SingleOrder = ({ order }: { order: Order }) => {
         <div className="flex justify-start items-center flex-col gap-5">
           <h2 className="text-2xl md:text-3xl lg:text-4xl">
             Status:{" "}
-            <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-900 to-red-500">
+            <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-gold-darker to-gold-dark">
               {order.status}
             </span>
           </h2>
@@ -31,7 +31,7 @@ const SingleOrder = ({ order }: { order: Order }) => {
         <hr className="my-10" />
         <h2
           className="text-4xl md:text-5xl lg:text-6xl mb-10 uppercase font-bold
-        bg-clip-text text-transparent bg-gradient-to-r from-red-900 to-red-500
+        bg-clip-text text-transparent bg-gradient-to-r from-gold-darker to-gold-dark
         "
         >
           products :
@@ -51,7 +51,7 @@ const SingleOrder = ({ order }: { order: Order }) => {
                   style={{
                     objectFit: "contain",
                   }}
-                  className="border-2 border-red-600 mb-2 h-40"
+                  className="border-2 border-gold mb-2 h-40"
                 />
                 <div>
                   <h2 className="text-2xl font-semibold pb-1">

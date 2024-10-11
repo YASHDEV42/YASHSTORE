@@ -6,6 +6,7 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { Cart, Product, User } from "@/types";
+import toast from "react-hot-toast";
 
 type Props = {};
 
@@ -22,6 +23,7 @@ const CheackoutPage = ({
 }) => {
   const stripe = useStripe();
   const elements = useElements();
+
   const [errorMessage, setErrorMessage] = React.useState<string>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [clientSecret, setClientSecret] = React.useState<string>("");
@@ -45,11 +47,14 @@ const CheackoutPage = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    const toastLoading = toast.loading("Processing payment...");
     if (!stripe || !elements) return;
     const { error: submitError } = await elements.submit();
     if (submitError) {
       setErrorMessage(submitError.message);
       setLoading(false);
+      toast.dismiss(toastLoading);
+      toast.error("Payment failed");
       return;
     }
 
@@ -65,13 +70,21 @@ const CheackoutPage = ({
     if (error) {
       setErrorMessage(error.message);
       setLoading(false);
+      toast.dismiss(toastLoading);
+      toast.error("Payment failed");
       return;
     }
 
     setLoading(false);
+    toast.dismiss(toastLoading);
+    toast.error("something went wrong");
   };
   if (!clientSecret) {
-    return <p>loading...</p>;
+    return (
+      <div className="center-col h-screen w-screen animate-ping">
+        <p>loading...</p>
+      </div>
+    );
   }
   return (
     <section className="center-col">
@@ -84,7 +97,7 @@ const CheackoutPage = ({
           <>
             <PaymentElement />
             {loading ? (
-              <button disabled className="primary-btn">
+              <button disabled className="primary-btn opacity-50">
                 loading...
               </button>
             ) : (

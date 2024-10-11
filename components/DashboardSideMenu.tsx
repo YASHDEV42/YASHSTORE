@@ -13,8 +13,8 @@ type Props = {};
 
 const DashboardSideMenu = (props: Props) => {
   return (
-    <div className=" min-h-screen w-1/4 bg-red-200 fixed left-0 top-14 pl-[10vw]">
-      <ul className="w-full bg-gradient-to-r from-red-200 to-red-50 h-screen center-col gap-5">
+    <div className=" min-h-screen w-1/4 bg-gold-lightest fixed left-0 top-14 pl-[10vw]">
+      <ul className="w-full bg-gradient-to-r from-gold-lightest to-gold-light h-screen center-col gap-5">
         <Link href={"/dashboard"} className="side-link">
           <span>
             <LayoutDashboard className="inline mr-3" />

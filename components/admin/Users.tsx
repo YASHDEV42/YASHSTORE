@@ -17,8 +17,8 @@ const Users = ({ users }: { users: User[] }) => {
         <label htmlFor="">Search :</label>
         <input
           className="ml-3 text-lg font-semibold w-64 h-10
-           border-2 border-red-300 rounded-md px-4
-           focus:outline-none focus:ring-2 focus:ring-red-300
+           border-2 border-gold-middle rounded-md px-4
+           focus:outline-none focus:ring-2 focus:ring-gold
            focus:border-transparent"
           type="text"
           id="search"
@@ -36,8 +36,8 @@ const Users = ({ users }: { users: User[] }) => {
           return (
             <div
               key={user.id}
-              className="bg-red-100 h-16 w-full flex justify-between items-center flex-row mb-3 px-4 rounded-md
-              hover:bg-red-200 hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
+              className="bg-gold-light h-16 w-full flex justify-between items-center flex-row mb-3 px-4 rounded-md
+              hover:bg-gold-middle hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
             >
               <div className="flex justify-between items-center flex-row w-1/2">
                 <span className="flex justify-center items-center flex-row gap-3">

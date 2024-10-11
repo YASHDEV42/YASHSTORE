@@ -1,18 +1,38 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 type Props = {};
 
-const page = async ({
+const page = ({
   params,
   searchParams,
 }: {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    if (!isMounted) {
+      setIsMounted(true);
+      return;
+    }
+    toast.success("Payment completed successfully");
+  }, [isMounted, setIsMounted]);
   return (
     <section className="center-col gap-2">
-      <h1>Your Payment has been completed successfully 🎊</h1>
+      <h1 className=" uppercase">
+        Your Payment has been completed{" "}
+        <span
+          className="
+      bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-500
+      "
+        >
+          successfully{" "}
+        </span>
+        🎊
+      </h1>
       <p>
         in 24 hours you will receive an email with the details of your order
       </p>
@@ -34,7 +54,7 @@ const page = async ({
           <button className="primary-btn">orders</button>
         </Link>
         <Link href="/products">
-          <button className="secondary-btn">keep shopping</button>
+          <button className="secondary-btn">products</button>
         </Link>
       </div>
     </section>

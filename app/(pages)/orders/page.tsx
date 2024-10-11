@@ -23,15 +23,15 @@ const page = async (props: Props) => {
   console.log(orders);
 
   return (
-    <section className="center-col gap-6 mt-24">
-      <h1 className="mb-10">My Orders</h1>
+    <section className="center-col gap-10 h-screen w-screen">
+      <h1 className="">My Orders</h1>
       {reverseOrders && reverseOrders.length > 0 ? (
         reverseOrders.map((order: Order, index: number) => (
           <Link
             href={`/orders/${order.id}`}
             key={order.id}
-            className="flex justify-between gap-10 items-center flex-row w-[45rem]  bg-red-100 p-3 rounded-md
-          hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-red-300 transition duration-300 ease-in-out"
+            className="flex justify-between gap-10 items-center flex-row w-[45rem]  bg-gold-light p-3 rounded-md border-2 border-gold-light
+          hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-gold hover:border-2 transition duration-300 ease-in-out"
           >
             <h2 className="text-4xl">order {index + 1}</h2>
             <h3 className="text-2xl font-semibold">

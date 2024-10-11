@@ -39,7 +39,7 @@ const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
           style={{
             objectFit: "contain",
           }}
-          className="rounded-md w-full h-[30rem] border-2 border-red-300"
+          className="rounded-md w-full h-[30rem] border-2 border-gold"
         />
         <div className="w-full flex flex-row justify-between items-center mt-1">
           <button
@@ -50,7 +50,7 @@ const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
           </button>
           <span
             className="
-              rounded-full bg-red-100 w-8 h-8 flex items-center justify-center
+              rounded-full bg-gold-light w-8 h-8 flex items-center justify-center
             "
           >
             {imgTracker + 1}
@@ -78,7 +78,7 @@ const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
           {user && user.role === "ADMIN" ? (
             <Link
               href={`/dashboard/edit-product/${product.id}`}
-              className="bg-red-200 ml-5 px-6 py-2 rounded-md border-2 border-red-300 font-bold "
+              className="bg-gold-light ml-5 px-6 py-2 rounded-md border-2 border-gold font-bold "
             >
               Edit
             </Link>

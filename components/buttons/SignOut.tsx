@@ -7,8 +7,8 @@ const SignOutBtn = (props: Props) => {
   return (
     <form action={SignOut}>
       <button
-        className="p-2 transition duration-200 border-2 border-red-50 rounded-md
-          hover:bg-red-100 hover:scale-95 hover:border-red-500"
+        className="p-2 transition duration-200 border-2 border-gold rounded-md
+          hover:bg-gold-light hover:scale-95 hover:border-gold-dark"
         type="submit"
       >
         Log out

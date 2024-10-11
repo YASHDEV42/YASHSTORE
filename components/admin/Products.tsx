@@ -30,8 +30,8 @@ const Products = ({
         <label htmlFor="">Search :</label>
         <input
           className="ml-3 text-lg font-semibold w-64 h-10
-           border-2 border-red-300 rounded-md px-2
-           focus:outline-none focus:ring-2 focus:ring-red-300
+           border-2 border-gold rounded-md px-2
+           focus:outline-none focus:ring-2 focus:ring-gold
            focus:border-transparent"
           type="text"
           id="search"
@@ -49,8 +49,8 @@ const Products = ({
           return (
             <div
               key={product.id}
-              className="bg-red-100 h-16 w-full flex justify-between items-center flex-row mb-3 px-2 rounded-md
-              hover:bg-red-200 hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
+              className="bg-gold-light h-16 w-full flex justify-between items-center flex-row mb-3 px-2 rounded-md
+              hover:bg-gold-middle hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
             >
               <div className="flex justify-between items-center flex-row w-72">
                 <span className="flex justify-center items-center flex-row gap-3">
@@ -89,7 +89,7 @@ const Products = ({
                 })}
                 <Link
                   href={`/dashboard/edit-product/${product.id}`}
-                  className="bg-red-100 px-6 py-2 rounded-md border-2 border-red-300 font-bold "
+                  className="bg-gold-light px-6 py-2 rounded-md border-2 border-gold-middle font-bold "
                 >
                   Edit
                 </Link>
