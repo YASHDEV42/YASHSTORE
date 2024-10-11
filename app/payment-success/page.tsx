@@ -12,14 +12,7 @@ const page = ({
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    if (!isMounted) {
-      setIsMounted(true);
-      return;
-    }
-    toast.success("Payment completed successfully");
-  }, [isMounted, setIsMounted]);
+  toast.success("Payment went successfully 🎉");
   return (
     <section className="center-col gap-2">
       <h1 className=" uppercase">

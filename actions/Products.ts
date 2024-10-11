@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { Order } from "@/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -181,7 +182,7 @@ const removeProductFromCart = async (userId: string, productId: string) => {
     console.error(error);
   }
 };
-const setOrderStatusFunction = async (orderId: string, status: string) => {
+const setOrderStatusFunction = async (orderId: string, status: any) => {
   console.log("Setting order status", orderId, status);
 
   try {

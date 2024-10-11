@@ -7,12 +7,12 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const Products = ({ products, user }: { products: Product[]; user: User }) => {
-  const [hoveredProduct, setHoveredProduct] = useState<number | null>(null);
+  const [hoveredProduct, setHoveredProduct] = useState<string | null>(null);
   const [prodcts, setProducts] = React.useState<Product[]>(products);
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
     null
   );
-  const handleMouseEnter = (id: number) => {
+  const handleMouseEnter = (id: string) => {
     setHoveredProduct(id);
   };
 
