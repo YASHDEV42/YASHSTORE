@@ -5,7 +5,7 @@ import styles from "./CustomCursor.module.css"; // Import your CSS module
 const CustomCursor: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const [url, setUrl] = useState(window.location.href);
+  const [url, setUrl] = useState(window?.location.href);
   const updateUrl = () => {
     setUrl(window.location.href); // Update the URL state
   };
