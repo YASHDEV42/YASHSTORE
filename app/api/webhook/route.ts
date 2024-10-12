@@ -1,24 +1,21 @@
-import { buffer } from "micro";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2024-06-20",
+});
 export const config = {
   api: {
     bodyParser: false, // Disable body parsing to get the raw body
   },
 };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-06-20",
-});
-
 export async function POST(req: NextRequest) {
-  // Capture raw body for signature verification
-  const rawBody = await buffer(req);
-  const sig = req.headers.get("stripe-signature");
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+  const body = await req.text();
+  const sig = req.headers.get("stripe-signature")!;
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
   let event: Stripe.Event;
 
@@ -29,13 +26,7 @@ export async function POST(req: NextRequest) {
         status: 400,
       });
     }
-
-    // Verify webhook signature with raw body
-    event = stripe.webhooks.constructEvent(
-      rawBody.toString(),
-      sig,
-      webhookSecret
-    );
+    event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err: any) {
     console.error(`❌ Webhook verification error: ${err.message}`);
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
