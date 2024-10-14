@@ -4,28 +4,32 @@ import styles from "./CustomCursor.module.css"; // Import your CSS module
 
 const CustomCursor: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [url, setUrl] = useState<string | null>(null);
 
-  const [url, setUrl] = useState(window?.location.href);
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
-    };
+    if (typeof window !== "undefined") {
+      setUrl(window.location.href);
 
-    window.addEventListener("mousemove", moveCursor);
+      const moveCursor = (e: MouseEvent) => {
+        setPosition({ x: e.clientX, y: e.clientY });
+      };
 
-    return () => {
-      window.removeEventListener("mousemove", moveCursor);
-    };
+      window.addEventListener("mousemove", moveCursor);
+
+      return () => {
+        window.removeEventListener("mousemove", moveCursor);
+      };
+    }
   }, []);
 
   useEffect(() => {
     const handleMouseOver = () => {
       const cursor = document.querySelector(`.${styles.cursor}`);
-      if (cursor) cursor.classList.add(styles.cursorHovered); // Use styles.cursorHovered
+      if (cursor) cursor.classList.add(styles.cursorHovered);
     };
     const handleMouseOut = () => {
       const cursor = document.querySelector(`.${styles.cursor}`);
-      if (cursor) cursor.classList.remove(styles.cursorHovered); // Use styles.cursorHovered
+      if (cursor) cursor.classList.remove(styles.cursorHovered);
     };
     const handleMouseClick = () => {
       const cursor = document.querySelector(`.${styles.cursor}`);
