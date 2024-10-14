@@ -70,6 +70,11 @@ const createProduct = async (prevState: FormData, formData: FormData) => {
 
 const deleteProduct = async (id: string) => {
   try {
+    await prisma.cart.deleteMany({
+      where: {
+        product_id: id,
+      },
+    });
     await prisma.product.delete({
       where: {
         id,
