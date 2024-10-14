@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 export async function POST(req: NextRequest) {
-  const body = await req.text(); // Get raw body
+  const body = await req.text();
   const sig = req.headers.get("stripe-signature")!;
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Verify Stripe signature using the raw body
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err: any) {
     console.error(`❌ Webhook verification error: ${err.message}`);
@@ -34,7 +33,6 @@ export async function POST(req: NextRequest) {
       case "payment_intent.succeeded":
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
 
-        // Ensure metadata exists
         const userId = paymentIntent.metadata.user_id;
         const productsId = paymentIntent.metadata.products_id;
         const cartsId = paymentIntent.metadata.carts_id;
@@ -68,7 +66,7 @@ export async function POST(req: NextRequest) {
         const order = await prisma.order.create({
           data: {
             total_price: paymentIntent.amount / 100,
-            address: "address", // Update with actual address
+            address: "address",
             payment_id: paymentIntent.id,
             user: {
               connect: { id: user.id },
@@ -94,10 +92,3 @@ export async function POST(req: NextRequest) {
 
   return new NextResponse(JSON.stringify({ received: true }));
 }
-
-// Disable Next.js body parsing for this route
-export const config = {
-  api: {
-    bodyParser: false, // Disable body parsing
-  },
-};
