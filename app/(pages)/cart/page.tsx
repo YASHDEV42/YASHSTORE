@@ -6,12 +6,16 @@ import Image from "next/image";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import RemoveProductFromCart from "@/components/buttons/RemoveProductFromCart";
+import { redirect } from "next/navigation";
 
 type Props = {};
 // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 const page = async (props: Props) => {
   const session = (await auth()) as Session | null;
   const user = session?.user as any;
+  if (!user) {
+    redirect("/login");
+  }
   const cart = await prisma.cart.findMany({ where: { user_id: user?.id } });
 
   const products_id = cart.map((item) => item.product_id);

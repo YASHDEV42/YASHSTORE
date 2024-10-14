@@ -22,7 +22,7 @@ const AddToCart = ({
         toast.dismiss(toastLoading);
         toast.success("added to cart");
       }}
-      className="z-50"
+      className="z-10"
     >
       <button
         type="submit"

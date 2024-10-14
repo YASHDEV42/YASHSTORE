@@ -52,7 +52,7 @@ const CustomCursor: React.FC = () => {
 
   return (
     <div
-      className={styles.cursor} // Apply styles.cursor here
+      className={window.innerWidth <= 768 ? styles.cursorSmall : styles.cursor}
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

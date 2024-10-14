@@ -3,6 +3,7 @@ import prisma from "@/lib/db";
 import { Order, Product } from "@/types";
 import { Session } from "next-auth";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import React from "react";
 
 type Props = {};
@@ -10,8 +11,9 @@ type Props = {};
 const page = async (props: Props) => {
   const session = (await auth()) as Session | null;
   const user = session?.user as any;
-  console.log(user);
-
+  if (!user) {
+    redirect("/login");
+  }
   const allorders: any = await prisma.order.findMany();
   const orders: any = await prisma.order.findMany({
     where: { user_id: user?.id },
