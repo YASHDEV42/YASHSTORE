@@ -7,9 +7,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-06-20",
 });
 
-
 export async function POST(req: NextRequest) {
-  const body = await req.text();
+  const body = await req.text(); // Get raw body
   const sig = req.headers.get("stripe-signature")!;
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET as string;
 
@@ -22,6 +21,8 @@ export async function POST(req: NextRequest) {
         status: 400,
       });
     }
+
+    // Verify Stripe signature using the raw body
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err: any) {
     console.error(`❌ Webhook verification error: ${err.message}`);
@@ -93,3 +94,10 @@ export async function POST(req: NextRequest) {
 
   return new NextResponse(JSON.stringify({ received: true }));
 }
+
+// Disable Next.js body parsing for this route
+export const config = {
+  api: {
+    bodyParser: false, // Disable body parsing
+  },
+};

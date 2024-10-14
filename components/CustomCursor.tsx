@@ -6,6 +6,7 @@ const CustomCursor: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [url, setUrl] = useState<string | null>(null);
 
+  // UseEffect to run window-related logic only on the client-side
   useEffect(() => {
     if (typeof window !== "undefined") {
       setUrl(window.location.href);
@@ -23,32 +24,30 @@ const CustomCursor: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleMouseOver = () => {
-      const cursor = document.querySelector(`.${styles.cursor}`);
-      if (cursor) cursor.classList.add(styles.cursorHovered);
-    };
-    const handleMouseOut = () => {
-      const cursor = document.querySelector(`.${styles.cursor}`);
-      if (cursor) cursor.classList.remove(styles.cursorHovered);
-    };
-    const handleMouseClick = () => {
-      const cursor = document.querySelector(`.${styles.cursor}`);
-      if (cursor) cursor.classList.remove(styles.cursorHovered);
-    };
+    if (typeof window !== "undefined") {
+      const handleMouseOver = () => {
+        const cursor = document.querySelector(`.${styles.cursor}`);
+        if (cursor) cursor.classList.add(styles.cursorHovered);
+      };
+      const handleMouseOut = () => {
+        const cursor = document.querySelector(`.${styles.cursor}`);
+        if (cursor) cursor.classList.remove(styles.cursorHovered);
+      };
 
-    const hoverableElements = document.querySelectorAll("a, button, li");
+      const hoverableElements = document.querySelectorAll("a, button, li");
 
-    hoverableElements.forEach((el) => {
-      el.addEventListener("mouseover", handleMouseOver);
-      el.addEventListener("mouseout", handleMouseOut);
-    });
-
-    return () => {
       hoverableElements.forEach((el) => {
-        el.removeEventListener("mouseover", handleMouseOver);
-        el.removeEventListener("mouseout", handleMouseOut);
+        el.addEventListener("mouseover", handleMouseOver);
+        el.addEventListener("mouseout", handleMouseOut);
       });
-    };
+
+      return () => {
+        hoverableElements.forEach((el) => {
+          el.removeEventListener("mouseover", handleMouseOver);
+          el.removeEventListener("mouseout", handleMouseOut);
+        });
+      };
+    }
   }, [url]);
 
   return (
