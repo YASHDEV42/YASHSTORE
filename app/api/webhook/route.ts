@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { NextResponse, NextRequest } from "next/server";
 import Stripe from "stripe";
 
+// Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-06-20",
 });
@@ -22,6 +23,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // Verify Stripe signature using the raw body
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
   } catch (err: any) {
     console.error(`❌ Webhook verification error: ${err.message}`);
@@ -66,7 +68,8 @@ export async function POST(req: NextRequest) {
         const order = await prisma.order.create({
           data: {
             total_price: paymentIntent.amount / 100,
-            address: "address",
+            // I should implement a way to get the address from the user
+            address: " ",
             payment_id: paymentIntent.id,
             user: {
               connect: { id: user.id },
