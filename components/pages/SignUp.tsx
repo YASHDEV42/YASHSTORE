@@ -10,19 +10,13 @@ const initialState = {
 const SignUp = (props: Props) => {
   const { pending } = useFormStatus();
   const [state, formAction] = useFormState(Register as any, initialState);
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const loadingToast = toast.loading("Signing Up...");
-    const formData: FormData = new FormData(e.currentTarget);
-    formAction(formData);
-    toast.dismiss(loadingToast);
-  };
+
   return (
     <section className="center-col gap-2 mb-8">
       <div className="h-1/2 w-full flex items-center justify-center mb-8 mt-20">
         <h1>Register Page</h1>
       </div>
-      <form className="center-col w-full" onSubmit={handleSubmit}>
+      <form className="center-col w-full" action={formAction}>
         <div className="w-full flex items-center justify-center flex-col">
           <label htmlFor="name" className="my-label">
             Name :

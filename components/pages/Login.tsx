@@ -13,24 +13,12 @@ const LoginPage = (props: Props) => {
 
   const [state, formAction] = useFormState(Login as any, initialState);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const loadingToast = toast.loading("login...");
-    const formData: FormData = new FormData(e.currentTarget);
-    formAction(formData);
-    toast.dismiss(loadingToast);
-  };
-
   return (
     <section className="center-col gap-2">
       <div className="h-1/2 w-full flex items-center justify-center mb-8">
         <h1>Login Page</h1>
       </div>
-      <form
-        className="center-col w-full"
-        // action={formAction}
-        onSubmit={handleSubmit}
-      >
+      <form className="center-col w-full" action={formAction}>
         <div className="w-full center-col">
           <label htmlFor="email">Email :</label>
           <input

@@ -62,8 +62,8 @@ const Hero: React.FC<HeroProps> = ({ user }) => {
         )
       ) : (
         <div className="center-col h-screen gap-2">
-          <h1>Welcome in YASHSTOCK</h1>
-          <p>The best place to buy any product</p>
+          <h1>Welcome in YASHSTORE</h1>
+          <p>The best place to buy any tech product</p>
           <div className="mt-2">
             <button
               onMouseOver={(e) => e.currentTarget.classList.add("hover-this")}
