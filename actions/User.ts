@@ -4,7 +4,7 @@ import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
 import { signIn, signOut } from "@/auth";
 
-const Register = async (formState: FormData) => {
+const Register = async (prevState: FormData, formState: FormData) => {
   const name = formState.get("name") as string;
   const email = formState.get("email") as string;
   const password = formState.get("password") as string;

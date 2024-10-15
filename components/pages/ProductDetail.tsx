@@ -11,6 +11,7 @@ type Props = {};
 
 const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
   const [imgTracker, setImgTracker] = React.useState(0);
+  const [loadingImage, setLoadingImage] = React.useState(false);
 
   const handleImg = (dir: string) => {
     if (dir === "next") {
@@ -31,16 +32,26 @@ const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
   return (
     <section className="flex justify-center items-center flex-col lg:flex-row gap-10 lg:mt-6 mt-16">
       <div className="lg:w-2/3 w-full">
-        <Image
-          src={product.image_url[imgTracker]}
-          alt={product.name}
-          width={400}
-          height={400}
-          style={{
-            objectFit: "contain",
-          }}
-          className="rounded-md w-full h-[30rem] border-2 border-gold"
-        />
+        {loadingImage ? (
+          <div className="w-full h-[30rem] flex items-center justify-center">
+            <h1 className="text-3xl font-bold">Loading...</h1>
+          </div>
+        ) : (
+          <Image
+            src={product.image_url[imgTracker]}
+            alt={product.name}
+            width={400}
+            height={400}
+            style={{
+              objectFit: "contain",
+            }}
+            className="rounded-md w-full h-[30rem] border-2 border-gold"
+            // onLoad={() => setLoadingImage((prev) => !prev)}
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lPAAAAABJRU5ErkJggg=="
+          />
+        )}
+
         <div className="w-full flex flex-row justify-between items-center mt-1">
           <button
             onClick={() => handleImg("prev")}

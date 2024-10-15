@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import CustomCursor from "@/components/CustomCursor";
+import { Suspense } from "react";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -22,10 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <title> A brief, clear, informative, and unique title</title>
       <body className={poppins.className}>
         <NavbarWrapper />
         <CustomCursor />
-        {children}
+        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         <Toaster />
       </body>
     </html>

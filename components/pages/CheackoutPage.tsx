@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import {
   PaymentElement,
   useElements,
@@ -95,7 +95,9 @@ const CheackoutPage = ({
       <form onSubmit={handleSubmit} className="center-col gap-5">
         {clientSecret && (
           <>
-            <PaymentElement />
+            <Suspense fallback={<div>loading...</div>}>
+              <PaymentElement />
+            </Suspense>
             {loading ? (
               <button disabled className="primary-btn opacity-50">
                 loading...
