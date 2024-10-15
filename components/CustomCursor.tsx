@@ -52,7 +52,11 @@ const CustomCursor: React.FC = () => {
 
   return (
     <div
-      className={window.innerWidth <= 768 ? styles.cursorSmall : styles.cursor}
+      className={
+        typeof window !== "undefined" && window.innerWidth <= 768
+          ? styles.cursorSmall
+          : styles.cursor
+      }
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,

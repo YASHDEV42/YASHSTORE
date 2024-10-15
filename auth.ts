@@ -2,7 +2,10 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcyrpt from "bcryptjs";
 import Google from "next-auth/providers/google";
-import { Session } from "next-auth";
+
+
+
+
 import { JWT } from "next-auth/jwt";
 import type { Provider } from "next-auth/providers";
 import prisma from "./lib/db";

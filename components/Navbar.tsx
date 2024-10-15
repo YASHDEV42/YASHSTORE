@@ -70,10 +70,14 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
           ) : (
             <>
               <li className="hover:scale-105 transition duration-200 hover:bg-gold-light p-2">
-                <Link href="/register">Register</Link>
+                <Link href="/register" prefetch={true}>
+                  Register
+                </Link>
               </li>
               <li className="hover:scale-105 transition duration-200 hover:bg-gold-light p-2">
-                <Link href="/login">Login</Link>
+                <Link href="/login" prefetch={true}>
+                  Login
+                </Link>
               </li>
             </>
           )}

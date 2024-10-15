@@ -6,6 +6,8 @@ const config = {
     extend: {
       colors: {
         gold: {
+
+          
           lightest: "#FFF9F5",
           light: "#FFF4EB",
           DEFAULT: "#FFD6A5",

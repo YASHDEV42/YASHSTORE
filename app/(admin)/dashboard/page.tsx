@@ -11,9 +11,9 @@ const page = async (props: Props) => {
   const categories = await prisma.category.findMany();
 
   return (
-    <section className="center-col gap-4 mb-24">
+    <section className="center-col gap-4 mb-24 px-5 lg:px-0">
       <h1 className="border-b-4 border-gold mt-32">Dashboard</h1>
-      <div className="grid grid-cols-4 gap-4 text-center">
+      <div className="flex items-center justify-around lg:w-3/4 w-full mt-5 flex-wrap">
         <div className="card">
           <h2 className="text-2xl font-semibold stroke-gold stroke-2">Users</h2>
           <p>{users.length}</p>
@@ -56,41 +56,39 @@ const page = async (props: Props) => {
 
                   return dateDifference;
                 })
-                .map(
-                  (order, index) =>
-                    order.status == "PENDING" && (
-                      <div
-                        key={order.id}
-                        className="flex justify-start items-center flex-row gap-10 w-full pr-6 pt-1"
-                      >
-                        <h2 className="text-xl w-72">
-                          user name :{" "}
-                          {
-                            users.find((user) => user.id === order.user_id)
-                              ?.name
-                          }
-                        </h2>
-                        <h2>
-                          <span
-                            className="font-bold text-md
+                .map((order, index) =>
+                  order.status == "PENDING" && order ? (
+                    <div
+                      key={order.id}
+                      className="flex justify-start items-center flex-row gap-10 w-full pr-6 pt-1"
+                    >
+                      <h2 className="text-xl w-72">
+                        user name :{" "}
+                        {users.find((user) => user.id === order.user_id)?.name}
+                      </h2>
+                      <h2>
+                        <span
+                          className="font-bold text-md
                         bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-500
                         "
-                          >
-                            {order.status}
-                          </span>
-                        </h2>
-                        <span
-                          className="text-xl font-bold 
+                        >
+                          {order.status}
+                        </span>
+                      </h2>
+                      <span
+                        className="text-xl font-bold 
                       bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-500
                       "
-                        >
-                          {order.total_price}$
-                        </span>
-                        <h2 className="italic w-64">
-                          {order.created_at.toUTCString()}
-                        </h2>{" "}
-                      </div>
-                    )
+                      >
+                        {order.total_price}$
+                      </span>
+                      <h2 className="italic w-64">
+                        {order.created_at.toUTCString()}
+                      </h2>{" "}
+                    </div>
+                  ) : (
+                    <p>No Pending Orders</p>
+                  )
                 )}
               <Link href={"/dashboard/orders"}>
                 <button className="secondary-btn mt-5">View All</button>

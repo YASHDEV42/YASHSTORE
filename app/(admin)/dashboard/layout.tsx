@@ -22,7 +22,7 @@ const layout = async ({
   return (
     <div>
       <DashboardSideMenu />
-      <div className="pl-[25vw]">{children}</div>
+      <div className="lg:pl-[25vw] pl-0">{children}</div>
     </div>
   );
 };
