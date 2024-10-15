@@ -32,11 +32,13 @@ const page = async (props: Props) => {
           <Link
             href={`/orders/${order.id}`}
             key={order.id}
-            className="flex justify-between gap-10 items-center flex-row w-[45rem]  bg-gold-light p-3 rounded-md border-2 border-gold-light
+            className="flex md:justify-between lg:gap-10 gap-5 items-center flex-col md:flex-row w-96 h-36 md:w-[45rem] bg-gold-light p-3 rounded-md border-2 border-gold-light
           hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-gold hover:border-2 transition duration-300 ease-in-out"
           >
-            <h2 className="text-4xl">order {index + 1}</h2>
-            <h3 className="text-2xl font-semibold">
+            <h2 className="md:text-4xl text-xl font-semibold">
+              order {index + 1}
+            </h2>
+            <h3 className="md:text-2xl text-lg font-semibold">
               Total Price:{" "}
               <span
                 className="
@@ -46,7 +48,7 @@ const page = async (props: Props) => {
                 {order.total_price}
               </span>
             </h3>
-            <h3 className="text-lg italic opacity-80 font-semibold">
+            <h3 className="lg:text-lg text-base italic opacity-80 font-semibold">
               {order.created_at.toUTCString()}
             </h3>
           </Link>

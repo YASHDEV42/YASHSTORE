@@ -92,23 +92,26 @@ const Navbar = ({ user, cart }: { user: User; cart: any }) => {
                 Products
               </Link>
             </li>
-            <li>
-              <Link onClick={() => setIsOpen(!isOpen)} href="/cart">
-                <ShoppingCart />
-                <span className="center-col w-6 h-6 rounded-full relative -top-3 bg-gold text-center text-base">
-                  {cart.length}
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link onClick={() => setIsOpen(!isOpen)} href="/orders">
-                My Orders
-              </Link>
-            </li>
+
             {user ? (
-              <li>
-                <SignOutBtn />
-              </li>
+              <>
+                <li>
+                  <Link onClick={() => setIsOpen(!isOpen)} href="/cart">
+                    <ShoppingCart />
+                    <span className="center-col w-6 h-6 rounded-full relative -top-3 bg-gold text-center text-base">
+                      {cart.length}
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link onClick={() => setIsOpen(!isOpen)} href="/orders">
+                    My Orders
+                  </Link>
+                </li>
+                <li>
+                  <SignOutBtn />
+                </li>
+              </>
             ) : (
               <>
                 <li>

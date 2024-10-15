@@ -42,7 +42,7 @@ const page = async (props: Props) => {
       {products.map((product) => (
         <div
           key={product.id}
-          className="flex justify-between items-center flex-row w-[45rem] h-24 bg-gold-light p-3 rounded-md
+          className="flex justify-between items-end lg:items-center flex-col lg:flex-row  lg:w-[45rem] lg:h-24 bg-gold-light p-3 rounded-md
           hover:scale-105 hover:-translate-y-1 hover:shadow-lg hover:border-gold transition duration-300 ease-in-out"
         >
           <div className="center-row gap-3">
@@ -74,8 +74,8 @@ const page = async (props: Props) => {
           </div>
         </div>
       ))}
-      <div className="flex justify-between items-center flex-row w-[40rem]">
-        <h2 className="text-3xl font-semibold mt-5">
+      <div className="flex justify-between items-end flex-row w-[100%] lg:w-[40rem]">
+        <h2 className="lg:text-3xl text-xl font-semibold lg:mt-5">
           Total Price :
           <span
             className="
@@ -86,7 +86,7 @@ const page = async (props: Props) => {
         </h2>
         <Link href="/checkout">
           <button
-            className="bg-white text-lg font-semibold rounded-md w-36 h-12
+            className="bg-white text-lg font-semibold rounded-md w-32 h-10 lg:w-36 lg:h-12
                shadow-lg border-2 border-gold
                hover:shadow-none hover:bg-gold hover:scale-95  transition duration-300 ease-in-out"
           >

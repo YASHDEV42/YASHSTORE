@@ -22,7 +22,7 @@ const RemoveProductFromCart = ({
       }}
     >
       <button type="submit" className="primary-btn">
-        remove item
+        Remove
       </button>
     </form>
   );
