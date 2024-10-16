@@ -13,7 +13,7 @@ const page = async (props: Props) => {
   return (
     <section className="center-col gap-4 mb-24 px-5 lg:px-0">
       <h1 className="border-b-4 border-gold mt-32">Dashboard</h1>
-      <div className="flex items-center justify-around lg:w-3/4 w-full mt-5 flex-wrap">
+      <div className="flex items-start justify-around lg:w-3/4 w-full mt-5 flex-wrap">
         <div className="card">
           <h2 className="text-2xl font-semibold stroke-gold stroke-2">Users</h2>
           <p>{users.length}</p>
@@ -87,7 +87,9 @@ const page = async (props: Props) => {
                       </h2>{" "}
                     </div>
                   ) : (
-                    <p>No Pending Orders</p>
+                    <>
+                      {index === orders.length - 1 && <p>No Pending Orders</p>}
+                    </>
                   )
                 )}
               <Link href={"/dashboard/orders"}>

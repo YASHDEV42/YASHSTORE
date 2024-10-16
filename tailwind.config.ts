@@ -6,8 +6,6 @@ const config = {
     extend: {
       colors: {
         gold: {
-
-          
           lightest: "#FFF9F5",
           light: "#FFF4EB",
           DEFAULT: "#FFD6A5",
@@ -19,6 +17,7 @@ const config = {
       animation: {
         rightToLift: "rightToLift 0.6s ease forwards",
         wave: "wave 10s linear infinite",
+        arrowFloating: "arrowFloating 1.5s linear infinite",
       },
       keyframes: {
         rightToLift: {
@@ -29,6 +28,11 @@ const config = {
           "0%": { transform: "initial" },
           "50%": { transform: "translateX(-100%)" },
           "100%": { transform: "initial" },
+        },
+        arrowFloating: {
+          "0%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-10px)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
     },
