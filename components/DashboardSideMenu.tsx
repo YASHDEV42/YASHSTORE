@@ -2,10 +2,8 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import {
-  ArrowBigDown,
   ArrowBigLeftDash,
   ArrowBigRightDash,
-  Cross,
   ShoppingBasket,
 } from "lucide-react";
 import { BadgePlus } from "lucide-react";
@@ -46,7 +44,9 @@ const DashboardSideMenu = (props: Props) => {
             <button onClick={() => setIsOpen((prev) => !prev)}>
               <ArrowBigRightDash
                 size={45}
-                className="animate-arrowFloating bg-gold-middle p-1 rounded-full"
+                className={`animate-arrowFloating bg-gold-middle p-1 rounded-full transition-all ${
+                  isOpen ? "" : ""
+                }`}
               />
             </button>
           </div>
@@ -100,14 +100,9 @@ const DashboardSideMenu = (props: Props) => {
         </div>
       )}
       {isOpen ? (
-        <div className=" min-h-screen w-3/4 bg-gold-lightest left-0 top-14 pl-[10vw] fixed">
+        <div className=" min-h-screen w-3/4 bg-gold-lightest left-0 top-14 pl-[10vw] fixed animate-sideMenuAppear">
           <ul className="w-full bg-gradient-to-r from-gold-lightest to-gold-light h-screen center-col gap-5">
-            <Cross
-              size={30}
-              className="inline mr-3 rotate-45 cursor-pointer absolute top-4 right-4"
-              onClick={() => setIsOpen((prev) => !prev)}
-            />
-            <div className="h-screen flex items-center justify-center fixed top-0 right-16 animate-arrowAppear">
+            <div className="h-screen flex items-center justify-center fixed -top-10 -right-16 animate-arrowAppear">
               <button onClick={() => setIsOpen((prev) => !prev)}>
                 <ArrowBigLeftDash
                   size={45}

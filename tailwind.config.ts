@@ -19,6 +19,7 @@ const config = {
         wave: "wave 10s linear infinite",
         arrowFloating: "arrowFloating 1.5s linear infinite",
         arrowAppear: "arrowAppear 1s ease forwards",
+        sideMenuAppear: "sideMenuAppear .5s ease forwards",
       },
       keyframes: {
         rightToLift: {
@@ -37,6 +38,10 @@ const config = {
         },
         arrowAppear: {
           "0%": { opacity: 0, transform: "translateX(100%)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+        sideMenuAppear: {
+          "0%": { opacity: 0, transform: "translateX(-100%)" },
           "100%": { opacity: 1, transform: "translateX(0)" },
         },
       },
