@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <title> A brief, clear, informative, and unique title</title>
+      <title>YASHSTORE</title>
       <body className={poppins.className}>
         <NavbarWrapper />
         <CustomCursor />
