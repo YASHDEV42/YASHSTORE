@@ -36,10 +36,10 @@ const Users = ({ users }: { users: User[] }) => {
           return (
             <div
               key={user.id}
-              className="bg-gold-light h-16 w-full flex justify-between items-center flex-row mb-3 px-4 rounded-md
+              className="bg-gold-light h-24 lg:h-16 w-full flex justify-between items-center flex-col lg:flex-row mb-3 px-4 py-1 lg:py-0 rounded-md
               hover:bg-gold-middle hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
             >
-              <div className="flex justify-between items-center flex-row w-1/2">
+              <div className="flex justify-between items-center flex-col lg:flex-row w-1/2">
                 <span className="flex justify-center items-center flex-row gap-3">
                   <h2 className="text-lg font-semibold">{user.name}</h2>
                 </span>

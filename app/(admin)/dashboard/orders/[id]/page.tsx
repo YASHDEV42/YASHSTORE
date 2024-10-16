@@ -26,14 +26,14 @@ const page = async ({ params }: { params: any }) => {
     <section className="mt-32 mb-5 w-full px-16 ">
       <h1>Order Details</h1>
       <br />
-      <h2 className="text-2xl font-semibold pb-1">Order ID: {id}</h2>
-      <h2 className="text-2xl font-semibold pb-1">
+      <h2 className="lg:text-2xl text-lg font-semibold pb-1">Order ID: {id}</h2>
+      <h2 className="lg:text-2xl text-lg font-semibold pb-1">
         Order Status: <SetOrderStatus order={order && order} />
       </h2>
-      <h2 className="text-2xl font-semibold">
+      <h2 className="lg:text-2xl text-xl font-semibold">
         Total Amount Paid:{" "}
         <span
-          className="text-3xl font-semibold
+          className="lg:text-3xl text-2xl font-semibold
         bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-500
         "
         >

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import {
   ArrowBigDown,
+  ArrowBigLeftDash,
   ArrowBigRightDash,
   Cross,
   ShoppingBasket,
@@ -106,6 +107,14 @@ const DashboardSideMenu = (props: Props) => {
               className="inline mr-3 rotate-45 cursor-pointer absolute top-4 right-4"
               onClick={() => setIsOpen((prev) => !prev)}
             />
+            <div className="h-screen flex items-center justify-center fixed top-0 right-16 animate-arrowAppear">
+              <button onClick={() => setIsOpen((prev) => !prev)}>
+                <ArrowBigLeftDash
+                  size={45}
+                  className="animate-arrowFloating bg-gold-middle p-1 rounded-full"
+                />
+              </button>
+            </div>{" "}
             <Link
               href={"/dashboard"}
               onClick={() => setIsOpen((prev) => !prev)}

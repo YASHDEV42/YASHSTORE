@@ -5,6 +5,8 @@ import DeleteBtn from "../buttons/DeleteBtn";
 import { deleteProduct } from "@/actions/Products";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import { revalidatePath } from "next/cache";
 
 type Props = {};
 
@@ -47,7 +49,7 @@ const CategoryDetail = ({
           return (
             <div
               key={product.id}
-              className="bg-gold-light h-16 w-full flex justify-between items-center flex-row mb-3 px-2 rounded-md
+              className="bg-gold-light lg:h-16 h-40 w-full flex justify-between items-center lg:items-center lg:flex-row flex-col mb-3 p-2 rounded-md
               hover:bg-gold-middle hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
             >
               <div className="flex justify-between items-center flex-row w-72">
@@ -62,24 +64,38 @@ const CategoryDetail = ({
                     }}
                     className="rounded-lg h-12 w-12"
                   />
-                  <h2 className="text-lg font-semibold">{product.name}</h2>
+                  <h2 className="text-2xl font-semibold">{product.name}</h2>
                 </span>
-                <h3 className="text-lg font-bold">{product.price}$</h3>
+                <h3 className="text-xl font-bold">
+                  <span
+                    className="
+                  bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-500
+                  "
+                  >
+                    {product.price}$
+                  </span>
+                </h3>
               </div>
-              <div className="center-row gap-3">
-                <Link
-                  href={`/dashboard/edit-product/${product.id}`}
-                  className="bg-gold-light px-6 py-2 rounded-md border-2 border-gold font-bold "
-                >
-                  Edit
-                </Link>
-                <form
-                  action={async () => {
-                    await deleteProduct(product.id);
-                  }}
-                >
-                  <DeleteBtn />
-                </form>
+              <div className="flex justify-center items-center flex-col lg:flex-row gap-3">
+                <div className="center-row gap-5">
+                  <Link
+                    href={`/dashboard/edit-product/${product.id}`}
+                    className="bg-gold-light px-6 py-2 rounded-md border-2 border-gold-middle font-bold "
+                  >
+                    Edit
+                  </Link>
+                  <form
+                    action={async () => {
+                      const toastLoading = toast.loading("deleting product...");
+                      await deleteProduct(product.id);
+                      toast.dismiss(toastLoading);
+                      toast.success("product deleted");
+                      revalidatePath("/dashboard/products");
+                    }}
+                  >
+                    <DeleteBtn />
+                  </form>
+                </div>
               </div>
             </div>
           );

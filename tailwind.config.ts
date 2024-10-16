@@ -18,6 +18,7 @@ const config = {
         rightToLift: "rightToLift 0.6s ease forwards",
         wave: "wave 10s linear infinite",
         arrowFloating: "arrowFloating 1.5s linear infinite",
+        arrowAppear: "arrowAppear 1s ease forwards",
       },
       keyframes: {
         rightToLift: {
@@ -33,6 +34,10 @@ const config = {
           "0%": { transform: "translateX(0)" },
           "50%": { transform: "translateX(-10px)" },
           "100%": { transform: "translateX(0)" },
+        },
+        arrowAppear: {
+          "0%": { opacity: 0, transform: "translateX(100%)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
         },
       },
     },

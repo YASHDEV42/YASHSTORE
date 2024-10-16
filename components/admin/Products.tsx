@@ -64,7 +64,7 @@ const Products = ({
                     }}
                     className="rounded-lg h-12 w-12"
                   />
-                  <h2 className="text-lg font-semibold">{product.name}</h2>
+                  <h2 className="text-2xl font-semibold">{product.name}</h2>
                 </span>
                 <h3 className="text-xl font-bold">
                   <span

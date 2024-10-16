@@ -44,7 +44,7 @@ const Orders = ({ orders, users }: { orders: Order[]; users: User[] }) => {
             <Link
               href={`/dashboard/orders/${order.id}`}
               key={order.id}
-              className="bg-gold-light h-16 w-full flex justify-between items-center flex-row mb-3 px-4 rounded-md
+              className="bg-gold-light py-2 lg:py-0 h-36 lg:h-16 w-full flex justify-between items-center flex-col lg:flex-row mb-3 px-4 rounded-md
               hover:bg-gold-middle hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
             >
               <h2 className="text-xl w-52 font-semibold">
