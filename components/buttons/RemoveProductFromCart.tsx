@@ -1,6 +1,7 @@
 "use client";
 import { removeProductFromCart } from "@/actions/Products";
 import React from "react";
+import { useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
 
 type Props = {};
@@ -21,11 +22,20 @@ const RemoveProductFromCart = ({
         toast.success("Item removed from cart");
       }}
     >
-      <button type="submit" className="primary-btn">
-        Remove
-      </button>
+      <RemoveProductFromCartSubmit />
     </form>
   );
 };
-
+const RemoveProductFromCartSubmit = () => {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      className={`primary-btn ${pending ? "opacity-60" : ""}`}
+      disabled={pending}
+    >
+      {pending ? "Removing..." : "Remove"}
+    </button>
+  );
+};
 export default RemoveProductFromCart;

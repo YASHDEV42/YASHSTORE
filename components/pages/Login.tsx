@@ -1,16 +1,13 @@
 "use client";
 import React from "react";
 import { Login } from "@/actions/User";
-import { useFormState, useFormStatus } from "react-dom";
-import toast from "react-hot-toast";
+import { useFormState } from "react-dom";
+import LoginBtn from "../buttons/LoginBtn";
 type Props = {};
 const initialState = {
   message: null,
 };
 const LoginPage = (props: Props) => {
-  const { pending } = useFormStatus();
-  console.log(pending);
-
   const [state, formAction] = useFormState(Login as any, initialState);
 
   return (
@@ -45,9 +42,7 @@ const LoginPage = (props: Props) => {
             {state.message}
           </p>
         )}
-        <button type="submit" className="primary-btn mt-4">
-          {pending ? "Loading..." : "Login"}
-        </button>
+        <LoginBtn />
       </form>
     </section>
   );

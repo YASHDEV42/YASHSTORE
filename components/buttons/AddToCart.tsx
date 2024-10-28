@@ -1,6 +1,7 @@
 "use client";
 import { addProductToCart } from "@/actions/Products";
 import toast from "react-hot-toast";
+import AddToCartSubmit from "./AddToCartSubmit";
 
 type Props = {};
 
@@ -24,14 +25,7 @@ const AddToCart = ({
       }}
       className="z-10"
     >
-      <button
-        type="submit"
-        className="bg-gold text-lg font-semibold rounded-md w-36 h-12
-              shadow-lg border-2 border-gold
-              hover:shadow-none hover:bg-gold-light hover:scale-95  transition duration-300 ease-in-out"
-      >
-        Add to Cart
-      </button>
+      <AddToCartSubmit />
     </form>
   );
 };

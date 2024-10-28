@@ -66,16 +66,20 @@ const Login = async (prevState: FormData, formData: FormData) => {
   if (!email || !password) {
     return { message: "Please fill in all fields" };
   }
-  const user = await prisma.user.findUnique({ where: { email } });
-  if (!user) {
-    return { message: "User not found!" };
-  }
-  const passwordsMatch = await bcrypt.compare(
-    password,
-    user.password as string
-  );
-  if (!passwordsMatch) {
-    return { message: "Password incorrect!" };
+  try {
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      return { message: "User not found!" };
+    }
+    const passwordsMatch = await bcrypt.compare(
+      password,
+      user.password as string
+    );
+    if (!passwordsMatch) {
+      return { message: "Password incorrect!" };
+    }
+  } catch (error) {
+    return { message: "Something went wrong", error };
   }
 
   try {

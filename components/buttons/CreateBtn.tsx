@@ -8,7 +8,7 @@ const CreateBtn = (props: Props) => {
 
   if (pending) {
     return (
-      <button className="primary-btn opacity-85" disabled>
+      <button className="primary-btn opacity-60" disabled>
         Creating...
       </button>
     );

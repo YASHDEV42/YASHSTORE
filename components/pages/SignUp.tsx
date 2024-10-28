@@ -1,14 +1,13 @@
 "use client";
 import { googleLogin, Register } from "@/actions/User";
 import React from "react";
-import { useFormState, useFormStatus } from "react-dom";
-import toast from "react-hot-toast";
+import { useFormState } from "react-dom";
+import SignupBtn from "../buttons/SignupBtn";
 type Props = {};
 const initialState = {
   message: null,
 };
 const SignUp = (props: Props) => {
-  const { pending } = useFormStatus();
   const [state, formAction] = useFormState(Register as any, initialState);
 
   return (
@@ -73,9 +72,7 @@ const SignUp = (props: Props) => {
             {state.message}
           </p>
         )}
-        <button type="submit" className="primary-btn mt-4">
-          {pending ? "Signing Up..." : "Sign Up"}
-        </button>
+        <SignupBtn />
       </form>
       <span>or</span>
       <form action={googleLogin}>
