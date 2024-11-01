@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const loading = (props: Props) => {
-  return <section className="center-row animate-pulse">loading...</section>;
+const Loading = (props: Props) => {
+  return <section className="center-row animate-pulse">Loading...</section>;
 };
 
-export default loading;
+export default Loading;

@@ -14,18 +14,23 @@ const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
   const [loadingImage, setLoadingImage] = React.useState(false);
 
   const handleImg = (dir: string) => {
+    setLoadingImage(true);
     if (dir === "next") {
       if (imgTracker === product.image_url.length - 1) {
         setImgTracker(0);
+        setLoadingImage(false);
       } else {
         setImgTracker((prev) => prev + 1);
+        setLoadingImage(false);
       }
     }
     if (dir === "prev") {
       if (imgTracker === 0) {
         setImgTracker(product.image_url.length - 1);
+        setLoadingImage(false);
       } else {
         setImgTracker((prev) => prev - 1);
+        setLoadingImage(false);
       }
     }
   };
@@ -46,7 +51,6 @@ const ProductDetail = ({ product, user }: { product: Product; user: any }) => {
               objectFit: "contain",
             }}
             className="rounded-md w-full h-[30rem] border-2 border-gold"
-            // onLoad={() => setLoadingImage((prev) => !prev)}
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkAAIAAAoAAv/lPAAAAABJRU5ErkJggg=="
           />

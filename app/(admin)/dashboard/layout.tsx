@@ -2,7 +2,8 @@ import { auth } from "@/auth";
 import DashboardSideMenu from "@/components/DashboardSideMenu";
 import { Session } from "next-auth";
 import { redirect } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
+import Loading from "./loading";
 
 type Props = {};
 
@@ -22,7 +23,9 @@ const layout = async ({
   return (
     <div>
       <DashboardSideMenu />
-      <div className="lg:pl-[25vw] pl-0">{children}</div>
+      <div className="lg:pl-[25vw] pl-0">
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </div>
     </div>
   );
 };

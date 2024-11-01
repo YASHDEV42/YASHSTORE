@@ -18,7 +18,9 @@ export default async function Home() {
       <Suspense fallback={<div>Loading...</div>}>
         <Hero user={user || null} />
       </Suspense>
-      <NewProducts newProducts={newProducts} user={user || null} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <NewProducts newProducts={newProducts} user={user || null} />
+      </Suspense>
     </main>
   );
 }

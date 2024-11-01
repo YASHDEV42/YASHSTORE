@@ -8,8 +8,6 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { revalidatePath } from "next/cache";
 
-type Props = {};
-
 const Products = ({
   products,
   categories,
@@ -52,7 +50,7 @@ const Products = ({
               className="bg-gold-light lg:h-16 h-40 w-full flex justify-between items-center lg:items-center lg:flex-row flex-col mb-3 p-2 rounded-md
               hover:bg-gold-middle hover:scale-105 hover:shadow-lg transition duration-300 ease-in-out"
             >
-              <div className="flex justify-between items-center flex-row w-72">
+              <div className="flex justify-between items-center flex-row w-96">
                 <span className="flex justify-center items-center flex-row gap-3">
                   <Image
                     src={product.image_url[0]}

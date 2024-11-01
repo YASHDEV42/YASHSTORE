@@ -41,7 +41,7 @@ const page = async (props: Props) => {
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold border-b-2 border-red-200 w-full pb-2">
           Pending Orders :
         </h2>
-        <div>
+        <div className="w-full">
           {orders && orders.length > 0 ? (
             <>
               {[...orders]
@@ -60,7 +60,7 @@ const page = async (props: Props) => {
                   order.status == "PENDING" && order ? (
                     <div
                       key={order.id}
-                      className="flex justify-start items-center flex-row gap-10 w-full pr-6 pt-1"
+                      className="flex justify-between items-center flex-row gap-10 w-full pr-6 pt-1"
                     >
                       <h2 className="text-xl w-72">
                         user name :{" "}
@@ -88,7 +88,7 @@ const page = async (props: Props) => {
                     </div>
                   ) : (
                     <>
-                      {index === orders.length - 1 && <p>No Pending Orders</p>}
+                      {/* {index === orders.length - 1 && <p>No Pending Orders</p>} */}
                     </>
                   )
                 )}
@@ -105,7 +105,7 @@ const page = async (props: Props) => {
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold border-b-2 border-red-200 w-full pb-2">
           New Users :
         </h2>
-        <div>
+        <div className="w-full">
           {users &&
             (() => {
               const sortedUsers = [...users].sort((a, b) => {

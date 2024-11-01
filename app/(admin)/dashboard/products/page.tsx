@@ -2,7 +2,7 @@ import Products from "@/components/admin/Products";
 import prisma from "@/lib/db";
 import { category, Product } from "@/types";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 type Props = {};
 
@@ -13,7 +13,9 @@ const page = async (props: Props) => {
 
   return (
     <main className="min-h-screen w-full mr-0 pt-36 flex justify-start items-center flex-col">
-      <Products products={products || null} categories={categories || null} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Products products={products || null} categories={categories || null} />
+      </Suspense>
     </main>
   );
 };
