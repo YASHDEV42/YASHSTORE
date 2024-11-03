@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import CustomCursor from "@/components/CustomCursor";
 import { Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -27,8 +28,9 @@ export default function RootLayout({
       <body className={poppins.className}>
         <NavbarWrapper />
         <CustomCursor />
-        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        {children}
         <Toaster />
+        <SpeedInsights />
       </body>
     </html>
   );

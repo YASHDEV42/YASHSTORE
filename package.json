@@ -19,6 +19,7 @@
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.3.0",
     "@vercel/postgres": "^0.10.0",
+    "@vercel/speed-insights": "^1.0.14",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
