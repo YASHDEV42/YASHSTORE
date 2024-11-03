@@ -6,6 +6,7 @@ import NavbarWrapper from "@/components/NavbarWrapper";
 import CustomCursor from "@/components/CustomCursor";
 import { Suspense } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         {children}
         <Toaster />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
